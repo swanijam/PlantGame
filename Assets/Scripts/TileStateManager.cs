@@ -6,12 +6,14 @@ public class TileStateManager : MonoBehaviour
 {
     public Vector2Int dimensions;
     public GameTile[,] tiles;
-    // Start is called before the first frame update
+      
+  // Start is called before the first frame update
     void Awake()
     {
-        Initialize();   
+        // this gets initialized by the GameManager now
+        // Initialize();   
     }
-    void Initialize() {
+    public void Initialize() {
         tiles = new GameTile[dimensions.x, dimensions.y];
         for (int x = 0; x < dimensions.x; x++ ) {
             for (int y = 0; y < dimensions.y; y++ ) {

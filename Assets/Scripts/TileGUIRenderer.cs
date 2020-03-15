@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class TileGUIRenderer : MonoBehaviour
 {
+    [Header("!!Toggle GUI with 'G' key!!")]
     public TileStateManager state;
     public Camera mainCamera;
     public Transform origin;
-    public float tileWidth;
+    public float tileWidth = 1;
     public float heightOffset;
-    public Vector2 boxdimensions;
+    public Vector2 boxdimensions = new Vector2(40f, 35f);
     // Update is called once per frame
     private void Awake()
     {
     }
+    private bool showGUI = true;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G)) {
+            showGUI = !showGUI;
+        }
+    }
     void OnGUI() {
-        RenderTilesWithGUI();
+        if (showGUI) RenderTilesWithGUI();
     }
     private void RenderTilesWithGUI() {
         Vector3 tileOffset = new Vector3(tileWidth, 0f, tileWidth);
