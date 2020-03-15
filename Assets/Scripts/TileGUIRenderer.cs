@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TilerRenderer : MonoBehaviour
+public class TileGUIRenderer : MonoBehaviour
 {
     public TileStateManager state;
     public Camera mainCamera;
