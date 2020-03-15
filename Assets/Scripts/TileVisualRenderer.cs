@@ -22,6 +22,7 @@ public class TileVisualRenderer : MonoBehaviour
                 if (SoilRenderPrefab != null) newtrg.renderTiles.Add(Instantiate(SoilRenderPrefab, GetPosition(x,y, SoilRenderPrefab.GetComponent<RenderTile>().anchor), Quaternion.identity, transform).GetComponent<RenderTile>());
                 // subscribe to stateChange events
                 state.tiles[x,y].onStateChanged += newtrg.OnTileStateChanged;
+                newtrg.InitializeState(state.tiles[x,y].sunlightLevel, state.tiles[x,y].waterLevel);
                 tiles[x,y] = newtrg;
             }
         }
@@ -42,9 +43,15 @@ public class TileRenderGroup
         renderTiles = new List<RenderTile>();
     }
     // receives stateChangeEvents from tiles in the tileStateManager and passes them to renderers
-    public void OnTileStateChanged(int sunChange, int waterChange) {
+    public void OnTileStateChanged(int sunLevel, int waterLevel) {
         for(int i = 0; i < renderTiles.Count; i++) {
-            renderTiles[i].OnStateChanged(sunChange, waterChange);
+            renderTiles[i].OnStateChanged(sunLevel, waterLevel);
+        }
+    }
+
+    public void InitializeState(int sunLevel, int waterLevel) {
+        for(int i = 0; i < renderTiles.Count; i++) {
+            renderTiles[i].InitializeState(sunLevel, waterLevel);
         }
     }
 }

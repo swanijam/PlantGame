@@ -38,7 +38,7 @@ public class GameTile {
         get {return _sunlightLevel;}
         set {
             if (value != _sunlightLevel) {
-                EmitStateChangeEvent(value-_sunlightLevel, 0);
+                EmitStateChangeEvent(value, _waterLevel);
             }
             _sunlightLevel = value;
         }
@@ -48,7 +48,7 @@ public class GameTile {
         get {return _waterLevel;}
         set {
             if (value != _waterLevel) {
-                EmitStateChangeEvent(0, value-_waterLevel);
+                EmitStateChangeEvent(_sunlightLevel, value);
             }
             _waterLevel = value;
         }
@@ -62,9 +62,9 @@ public class GameTile {
     // emit state change events using event "onStateChanged"
     // by using a subscriber pattern here, we can have the TileStateManager continue to not care what's rendering it.
     // a PlantRenderer, for example, should initialize by doing [TileStateManager].tiles[x,y].onStateChanged += PlantStateChange;
-    public delegate void StateChangeEvent(int sunChange, int waterChange);
+    public delegate void StateChangeEvent(int newSun, int newWater);
     public event StateChangeEvent onStateChanged;
-    private void EmitStateChangeEvent(int sunChange, int waterChange) {
-        if (onStateChanged != null) onStateChanged(sunChange, waterChange);
+    private void EmitStateChangeEvent(int newSun, int newWater) {
+        if (onStateChanged != null) onStateChanged(newSun, newWater);
     }
 }

@@ -18,7 +18,12 @@ public class RenderTile : MonoBehaviour
 
     // }
     public Vector2 anchor;
-    public virtual void OnStateChanged(int sunChange, int waterChange) {
+    // identical methods, separate for clarity's sake
+    public virtual void OnStateChanged(int newSun, int newWater) {
+
+    }
+    // identical methods, separate for clarity's sake
+    public virtual void InitializeState(int sunLevel, int waterLevel) {
 
     }
 }
