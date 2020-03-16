@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {x: 0, y: 0}
   renderer: {fileID: 1921077279110522084}
-  sunLevelRange: {x: 0, y: 3}
+  sunLevelRange: {x: 0, y: 5}
   sunBrightnessRange: {x: 0, y: 1}
-  waterRange: {x: 0, y: 3}
+  waterRange: {x: 1, y: 5}
   dryColor: {r: 0.4056604, g: 0.34485385, b: 0.23153257, a: 0}
   saturatedColor: {r: 0, g: 0.5176471, b: 0.33997262, a: 0}
 --- !u!1 &1921077279110522087

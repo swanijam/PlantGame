@@ -16,7 +16,6 @@ public class BasicColorRenderTile : RenderTile
         float sunMod = Mathf.Lerp(sunBrightnessRange.x, sunBrightnessRange.y, Mathf.InverseLerp(sunLevelRange.x, sunLevelRange.y, newSun));
         newColor = newColor * sunMod;//Mathf.Lerp(sunBrightnessRange.x, sunBrightnessRange.y, Mathf.InverseLerp(sunLevelRange.x, sunLevelRange.y, newSun));
         renderer.material.SetColor("_BaseColor", newColor);
-        Debug.Log("sunMod:"+sunMod, this);
     }
     // identical methods, separate for clarity's sake
     public override void InitializeState(int sunLevel, int waterLevel) {
@@ -24,6 +23,5 @@ public class BasicColorRenderTile : RenderTile
         float sunMod = Mathf.Lerp(sunBrightnessRange.x, sunBrightnessRange.y, Mathf.InverseLerp(sunLevelRange.x, sunLevelRange.y, waterLevel));
         newColor = newColor * sunMod;//Mathf.Lerp(sunBrightnessRange.x, sunBrightnessRange.y, Mathf.InverseLerp(sunLevelRange.x, sunLevelRange.y, newSun));
         renderer.material.SetColor("_BaseColor", newColor);
-        Debug.Log("sunMod:"+sunMod, this);
     }
 }
