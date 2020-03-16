@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class TileVisualRenderer : MonoBehaviour
     [HideInInspector]
     public TileRenderGroup[,] tiles;
     
-    public void Initialize() {
+    public IEnumerator Initialize() {
         tiles = new TileRenderGroup[state.dimensions.x, state.dimensions.y];
         for (int x = 0; x < state.dimensions.x; x++ ) {
             for (int y = 0; y < state.dimensions.y; y++ ) {
@@ -24,6 +25,7 @@ public class TileVisualRenderer : MonoBehaviour
                 state.tiles[x,y].onStateChanged += newtrg.OnTileStateChanged;
                 newtrg.InitializeState(state.tiles[x,y].sunlightLevel, state.tiles[x,y].waterLevel);
                 tiles[x,y] = newtrg;
+                yield return new WaitForSeconds(0.02f);
             }
         }
     }

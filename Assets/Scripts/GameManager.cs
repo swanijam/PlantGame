@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset() {
         state.Initialize();
-        rendering.Initialize();
+        StartCoroutine(rendering.Initialize());
     }
 
     private void Update()
