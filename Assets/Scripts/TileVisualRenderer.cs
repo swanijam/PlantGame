@@ -56,4 +56,8 @@ public class TileRenderGroup
             renderTiles[i].InitializeState(sunLevel, waterLevel);
         }
     }
+
+    public void AddRenderTile(RenderTile renderTile) {
+        renderTiles.Add(renderTile);
+    }
 }

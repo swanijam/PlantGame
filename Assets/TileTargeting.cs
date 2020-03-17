@@ -39,6 +39,12 @@ public class TileTargeting : MonoBehaviour
         snappedCorner.z += tileWidth/2f;
         centerPosition = snappedCorner;
     }
+    public Vector3 GetWorldPositionFromTileCoordinate(int x, int y) {
+        Vector3 snappedCorner = new Vector3(Mathf.Floor(x * tileWidth)/tileWidth, floorHeight, Mathf.Floor(y * tileWidth)/tileWidth);
+        snappedCorner.x += tileWidth/2f;
+        snappedCorner.z += tileWidth/2f;
+        return snappedCorner;
+    }
 
     private void OnGUI()
     {
