@@ -7,7 +7,7 @@ public class ApplyTetramino : MonoBehaviour
     public TileStateManager state;
     public TileTargeting targeting;
     public Tetramino activeTetramino;
-
+    
     public void ApplyCurrentTetramino(int x, int y) {
         for (int i = 0; i < activeTetramino.tiles.Length; i++) {
             state.AddSunlight(x+activeTetramino.tiles[i].offset.x, y+activeTetramino.tiles[i].offset.y, activeTetramino.tiles[i].sunEffect);
