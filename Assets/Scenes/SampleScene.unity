@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502667, g: 0.37139338, b: 0.49600998, a: 1}
+  m_IndirectSpecularColor: {r: 0.2850264, g: 0.37139297, b: 0.49600953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GUITargetImage: {fileID: 2800000, guid: dc7741e567333bb4494b7ffba53f720a, type: 3}
+  currentTile: {x: 0, y: 0}
   floorHeight: 0
   mainCam: {fileID: 1687258584}
   boardOrigin: {fileID: 420504265}
@@ -730,6 +731,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1220261663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220261665}
+  - component: {fileID: 1220261664}
+  m_Layer: 0
+  m_Name: ApplyTetramino
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1220261664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220261663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96291e5ea7bd506438bb9d070efe71d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 1177246798}
+  targeting: {fileID: 760213249}
+  activeTetramino:
+    tiles:
+    - offset: {x: 0, y: 0}
+      sunEffect: 1
+      waterEffect: 0
+    - offset: {x: 1, y: 0}
+      sunEffect: 1
+      waterEffect: 0
+    - offset: {x: 2, y: 0}
+      sunEffect: 1
+      waterEffect: -1
+    - offset: {x: 0, y: -1}
+      sunEffect: 1
+      waterEffect: -1
+--- !u!4 &1220261665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220261663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4518616, y: -0.11294351, z: 2.3935788}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1278355951 stripped
 Transform:

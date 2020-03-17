@@ -6,7 +6,7 @@ public class TileTargeting : MonoBehaviour
 {
     public Texture GUITargetImage;
     Vector3 currentTilePos;
-    Vector2Int currentTile;
+    public Vector2Int currentTile;
     public float floorHeight = 0f;
     public Camera mainCam;
     public Transform boardOrigin;
