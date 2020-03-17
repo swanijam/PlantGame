@@ -763,7 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 1177246798}
   targeting: {fileID: 760213249}
-  activeTetramino:
+  d_activeTetramino:
     tiles:
     - offset: {x: 0, y: 0}
       sunEffect: 1
@@ -773,7 +773,7 @@ MonoBehaviour:
       waterEffect: 0
     - offset: {x: 2, y: 0}
       sunEffect: 1
-      waterEffect: -1
+      waterEffect: 0
     - offset: {x: 0, y: -1}
       sunEffect: 1
       waterEffect: -1
