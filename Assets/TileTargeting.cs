@@ -6,7 +6,7 @@ public class TileTargeting : MonoBehaviour
 {
     public Texture GUITargetImage;
     Vector3 currentTilePos;
-    Vector2Int currentTile;
+    public Vector2Int currentTile;
     public float floorHeight = 0f;
     public Camera mainCam;
     public Transform boardOrigin;
@@ -38,6 +38,12 @@ public class TileTargeting : MonoBehaviour
         snappedCorner.x += tileWidth/2f;
         snappedCorner.z += tileWidth/2f;
         centerPosition = snappedCorner;
+    }
+    public Vector3 GetWorldPositionFromTileCoordinate(int x, int y) {
+        Vector3 snappedCorner = new Vector3(Mathf.Floor(x * tileWidth)/tileWidth, floorHeight, Mathf.Floor(y * tileWidth)/tileWidth);
+        snappedCorner.x += tileWidth/2f;
+        snappedCorner.z += tileWidth/2f;
+        return snappedCorner;
     }
 
     private void OnGUI()

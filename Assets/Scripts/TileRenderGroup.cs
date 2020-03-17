@@ -20,4 +20,8 @@ public class TileRenderGroup : MonoBehaviour
             visualizers[i].InitializeState(sunLevel, waterLevel);
         }
     }
+
+    public void AddVisualizer(Visualizer visualizer) {
+        visualizers.Add(visualizer);
+    }
 }

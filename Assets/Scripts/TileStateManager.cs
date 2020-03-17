@@ -23,10 +23,25 @@ public class TileStateManager : MonoBehaviour
     }
 
     public void AddSunlight(int x, int y, int amt) {
+        if (x < 0 || x >= dimensions.x)
+            return;
+        if (y < 0 || y >= dimensions.y)
+            return;
         tiles[x,y].sunlightLevel += amt;
     }
     public void AddWater(int x, int y, int amt) {
+        if (x < 0 || x >= dimensions.x)
+            return;
+        if (y < 0 || y >= dimensions.y)
+            return;
         tiles[x,y].waterLevel += amt;
+    }
+    public bool isValidTile(int x, int y) {
+        if (x < 0 || x >= dimensions.x)
+            return false;
+        if (y < 0 || y >= dimensions.y)
+            return false;
+        return true;
     }
 }
 
