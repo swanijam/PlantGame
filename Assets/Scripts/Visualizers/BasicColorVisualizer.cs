@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicColorRenderTile : RenderTile
+public class BasicColorVisualizer : Visualizer
 {
     public Renderer renderer;
     public Vector2 sunLevelRange;

@@ -9,23 +9,24 @@ public class TileVisualRenderer : MonoBehaviour
     public Transform origin;
     public float tileWidth = 1;
     public float heightOffset;
+    public GameObject renderGroupPrefab;
     public GameObject SoilRenderPrefab;
     
     [HideInInspector]
     public TileRenderGroup[,] tiles;
     
-    public IEnumerator Initialize() {
+    public void Initialize() {
         tiles = new TileRenderGroup[state.dimensions.x, state.dimensions.y];
         for (int x = 0; x < state.dimensions.x; x++ ) {
             for (int y = 0; y < state.dimensions.y; y++ ) {
-                TileRenderGroup newtrg = new TileRenderGroup();
+                // add a tile render group instance to the center of the cell
+                TileRenderGroup newtrg = Instantiate(renderGroupPrefab, GetPosition(x,y, new Vector2(0.5f, 0.5f) ), Quaternion.identity, transform).GetComponent<TileRenderGroup>();
                 // add a dirt prefab to every tile by default.
-                if (SoilRenderPrefab != null) newtrg.renderTiles.Add(Instantiate(SoilRenderPrefab, GetPosition(x,y, SoilRenderPrefab.GetComponent<RenderTile>().anchor), Quaternion.identity, transform).GetComponent<RenderTile>());
+                if (SoilRenderPrefab != null) newtrg.visualizers.Add(Instantiate(SoilRenderPrefab, GetPosition(x,y, SoilRenderPrefab.GetComponent<Visualizer>().anchor), Quaternion.identity, newtrg.transform).GetComponent<Visualizer>());
                 // subscribe to stateChange events
                 state.tiles[x,y].onStateChanged += newtrg.OnTileStateChanged;
                 newtrg.InitializeState(state.tiles[x,y].sunlightLevel, state.tiles[x,y].waterLevel);
                 tiles[x,y] = newtrg;
-                yield return new WaitForSeconds(0.02f);
             }
         }
     }
@@ -37,23 +38,3 @@ public class TileVisualRenderer : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class TileRenderGroup
-{
-    public List<RenderTile> renderTiles;   
-    public TileRenderGroup() {
-        renderTiles = new List<RenderTile>();
-    }
-    // receives stateChangeEvents from tiles in the tileStateManager and passes them to renderers
-    public void OnTileStateChanged(int sunLevel, int waterLevel) {
-        for(int i = 0; i < renderTiles.Count; i++) {
-            renderTiles[i].OnStateChanged(sunLevel, waterLevel);
-        }
-    }
-
-    public void InitializeState(int sunLevel, int waterLevel) {
-        for(int i = 0; i < renderTiles.Count; i++) {
-            renderTiles[i].InitializeState(sunLevel, waterLevel);
-        }
-    }
-}

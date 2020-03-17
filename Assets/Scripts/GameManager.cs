@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public TileStateManager state;
     public TileVisualRenderer rendering;
+    public TileAnimationManager animationManager;
+    
     private void Awake()
     {
         Reset();
@@ -14,7 +16,8 @@ public class GameManager : MonoBehaviour
 
     public void Reset() {
         state.Initialize();
-        StartCoroutine(rendering.Initialize());
+        rendering.Initialize();
+        animationManager.Initialize();
     }
 
     private void Update()

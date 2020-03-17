@@ -5,34 +5,41 @@ using UnityEngine;
 
 public class TileAnimationManager : MonoBehaviour
 {
-    public Transform animationTarget;
-    public Vector3 baseScale;
+    public TileStateManager state;
+    public TileVisualRenderer tileRenderer;
 
     [Header ("Initial Animation")]
-    public float initialAnimLength;
-    public AnimationCurve initialAnimCurve;
-      
-    void Start()
-    {
-        // this gets initialized by the GameManager now
-        baseScale = animationTarget.localScale;
-        Initialize();   
-    }
+    public float staggerDelay = 0.2f;
+    public float stepPause = 0.3f;
 
     public void Initialize()
     {
-        StartCoroutine(InitialAnimationRoutine());
+        StartCoroutine(ExecuteInitialAnimations());
     }
 
-    private IEnumerator InitialAnimationRoutine()
+    private IEnumerator ExecuteInitialAnimations()
     {
-        float animTime = 0;
-        while(animTime <= 1)
+        for(int x = 0; x < state.dimensions.x; x++)
         {
-            animTime += Time.deltaTime/initialAnimLength;
-            float newScaleVal = (initialAnimCurve.Evaluate(animTime)*2 * baseScale.x);
-            animationTarget.localScale = new Vector3(newScaleVal, baseScale.y, newScaleVal);
-            yield return null;
+            for(int y = 0; y < state.dimensions.y; y++)
+            {
+                tileRenderer.tiles[x,y].tileAnimator.Initialize();
+                yield return new WaitForSeconds(staggerDelay);
+            }
+        }
+        yield return new WaitForSeconds(stepPause);
+
+        for(int x = 0; x < state.dimensions.x; x++)
+        {
+            for(int y = 0; y < state.dimensions.x; y++)
+            {
+                // FIGURE OUT A BETTER WAY TO STAGE THESE
+                for(int i = 0; i < tileRenderer.tiles[x,y].visualizers.Count; i++)
+                {
+                    tileRenderer.tiles[x,y].visualizers[i].animator.Initialize();
+                }
+                yield return new WaitForSeconds(staggerDelay);
+            }
         }
     }
 

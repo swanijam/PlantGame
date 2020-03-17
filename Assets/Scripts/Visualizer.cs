@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 ///abstract class from which soilrenderer, plantrenderer, (obstacle renderer?) derive from
-public class RenderTile : MonoBehaviour
+public class Visualizer : MonoBehaviour
 {
+    public VisualizerAnimator animator;
+
     // public virtual void IncreaseSunLevel(int mod) {
 
     // }
