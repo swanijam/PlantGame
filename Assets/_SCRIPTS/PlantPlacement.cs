@@ -15,7 +15,7 @@ public class PlantPlacement : MonoBehaviour
             Vector3 pos = targeting.GetWorldPositionFromTileCoordinate(targetCell.x, targetCell.y);
             // parent eh new plant to the rendertilegroup!
             GameObject go = Instantiate(plant, pos, Quaternion.identity);
-            visualz.tiles[targetCell.x, targetCell.y].AddRenderTile(go.GetComponent<RenderTile>());
+            visualz.tiles[targetCell.x, targetCell.y].AddVisualizer(go.GetComponent<Visualizer>());
         }
     }
 }

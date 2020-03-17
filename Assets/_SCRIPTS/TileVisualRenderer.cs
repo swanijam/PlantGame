@@ -37,31 +37,3 @@ public class TileVisualRenderer : MonoBehaviour
         return origin.position + new Vector3(tilex*tileWidth + anchor.x*tileWidth, heightOffset, tiley*tileWidth + anchor.y*tileWidth);
     }
 }
-
-<<<<<<< HEAD
-=======
-[System.Serializable]
-public class TileRenderGroup
-{
-    public List<RenderTile> renderTiles;   
-    public TileRenderGroup() {
-        renderTiles = new List<RenderTile>();
-    }
-    // receives stateChangeEvents from tiles in the tileStateManager and passes them to renderers
-    public void OnTileStateChanged(int sunLevel, int waterLevel) {
-        for(int i = 0; i < renderTiles.Count; i++) {
-            renderTiles[i].OnStateChanged(sunLevel, waterLevel);
-        }
-    }
-
-    public void InitializeState(int sunLevel, int waterLevel) {
-        for(int i = 0; i < renderTiles.Count; i++) {
-            renderTiles[i].InitializeState(sunLevel, waterLevel);
-        }
-    }
-
-    public void AddRenderTile(RenderTile renderTile) {
-        renderTiles.Add(renderTile);
-    }
-}
->>>>>>> 040fafc35be7f94042b8e06fb990395d6f4e125f

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantRenderTile : RenderTile
+public class PlantVisualizer : Visualizer
 {
     
     // identical methods, separate for clarity's sake
