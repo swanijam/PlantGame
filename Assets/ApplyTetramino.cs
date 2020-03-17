@@ -6,16 +6,19 @@ public class ApplyTetramino : MonoBehaviour
 {
     public TileStateManager state;
     public TileTargeting targeting;
+    public ForecastQueue forecastQueue;
 
-    public Tetramino d_activeTetramino;
+    // public Tetramino d_activeTetramino;
     float d_currentRotation = 0f;
 
     public void ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
-        for (int i = 0; i < d_activeTetramino.tiles.Length; i++) {
-            Vector2Int offs = RotateOffset(d_activeTetramino.tiles[i].offset, rotation);
-            state.AddSunlight(x+offs.x, y+offs.y, d_activeTetramino.tiles[i].sunEffect);
-            state.AddWater(x+offs.x, y+offs.y, d_activeTetramino.tiles[i].waterEffect);
+        ForecastShape _shape = forecastQueue.forecastShapes[0];
+        for (int i = 0; i < _shape.tiles.Count; i++) {
+            Vector2Int offs = RotateOffset(_shape.tiles[i].offset, rotation);
+            if(_shape.tiles[i].type == ForecastType.Water) state.AddWater(x+offs.x, y+offs.y, 1);
+            if(_shape.tiles[i].type == ForecastType.Sun) state.AddSunlight(x+offs.x, y+offs.y, 1);
         }
+        forecastQueue.forecastShapes.RemoveAt(0);
     }
     private Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
@@ -38,13 +41,13 @@ public class ApplyTetramino : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class Tetramino {
-    public TetraminoTile[] tiles;
-}
-[System.Serializable]
-public class TetraminoTile {
-    public Vector2Int offset;
-    public int sunEffect;
-    public int waterEffect;
-}
+// [System.Serializable]
+// public class Tetramino {
+//     public TetraminoTile[] tiles;
+// }
+// [System.Serializable]
+// public class TetraminoTile {
+//     public Vector2Int offset;
+//     public int sunEffect;
+//     public int waterEffect;
+// }
