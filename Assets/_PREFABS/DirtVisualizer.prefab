@@ -48,9 +48,9 @@ MonoBehaviour:
   animator: {fileID: 2044461147604677398}
   anchor: {x: 0, y: 0}
   renderer: {fileID: 1921077279110522084}
-  sunLevelRange: {x: 0, y: 0}
-  sunBrightnessRange: {x: 0, y: 0}
-  waterRange: {x: 0, y: 0}
+  sunLevelRange: {x: 0, y: 7}
+  sunBrightnessRange: {x: 0, y: 1}
+  waterRange: {x: 0, y: 7}
   dryColor: {r: 0.990566, g: 0.7951708, b: 0.3504361, a: 1}
   saturatedColor: {r: 0.10435206, g: 0.6320754, b: 0.28355262, a: 1}
 --- !u!114 &2044461147604677398

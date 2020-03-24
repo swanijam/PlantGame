@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplyTetramino : MonoBehaviour
+public class PGApplyTetramino : MonoBehaviour
 {
     public TileStateManager state;
     public TileTargeting targeting;
@@ -30,9 +30,13 @@ public class ApplyTetramino : MonoBehaviour
         else return offset; // same thing as above comment, but satisfies "all code paths return a value"
     }
 
+    public delegate void TetraminoApplied();
+    public event TetraminoApplied onTetraminoApplied; 
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) {
+            if (onTetraminoApplied != null) onTetraminoApplied();
             ApplyCurrentTetramino(targeting.currentTile.x, targeting.currentTile.y, d_currentRotation);
         }
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -40,14 +44,3 @@ public class ApplyTetramino : MonoBehaviour
         }
     }
 }
-
-// [System.Serializable]
-// public class Tetramino {
-//     public TetraminoTile[] tiles;
-// }
-// [System.Serializable]
-// public class TetraminoTile {
-//     public Vector2Int offset;
-//     public int sunEffect;
-//     public int waterEffect;
-// }
