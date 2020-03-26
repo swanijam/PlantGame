@@ -15,10 +15,10 @@ public class WeatherQueue : MonoBehaviour
         instance = this;
         // Debug.Log("defined instance");
     }
-    public Queue<Weather> weatherQueue;
+    public List<Weather> weatherQueue;
     public static Weather currentWeather {
         get {
-            return instance.weatherQueue.Peek();
+            return instance.weatherQueue[0];
         }
     }
 
@@ -32,7 +32,7 @@ public class WeatherQueue : MonoBehaviour
 
     public bool noNoneDays = true;
     public void Initialize(int numDays=10) {
-        weatherQueue = new Queue<Weather>();
+        weatherQueue = new List<Weather>();
         for (int i = 0; i < numDays; i++) {
             int selection = Random.Range(0, 3);
             if (noNoneDays) {
@@ -40,12 +40,12 @@ public class WeatherQueue : MonoBehaviour
                     selection = Random.Range(0, 3);
                 }
             }
-            weatherQueue.Enqueue((Weather)selection);
+            weatherQueue.Add((Weather)selection);
         }
         // Debug.Log("Initialized Weather Queue");
     }
 
     public void AdvanceQueue() {
-        weatherQueue.Dequeue();
+        weatherQueue.RemoveAt(0);
     }
 }
