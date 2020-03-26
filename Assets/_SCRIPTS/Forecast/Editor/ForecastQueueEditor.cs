@@ -97,17 +97,17 @@ public class ForecastQueueEditor : UnityEditor.Editor
 
     public void fillTileArray(ref ForecastQueue forecastQueue, int index)
     {
-        forecastQueue.forecastShapes[index].tiles.Clear();
-        for (int x = 0; x < 5; x++)
-        {
-            for (int y = 0; y < 5; y++)
-            {
-                if (forecastQueue.forecastShapes[index].editorTiles[x * 5 + y].type != ForecastType.None)
-                {
-                    forecastQueue.forecastShapes[index].tiles.Add(forecastQueue.forecastShapes[index].editorTiles[x * 5 + y]);
-                }
-            }
-        }
+        // forecastQueue.forecastShapes[index].tiles.Clear();
+        // for (int x = 0; x < 5; x++)
+        // {
+        //     for (int y = 0; y < 5; y++)
+        //     {
+        //         if (forecastQueue.forecastShapes[index].editorTiles[x * 5 + y].type != ForecastType.None)
+        //         {
+        //             forecastQueue.forecastShapes[index].tiles.Add(forecastQueue.forecastShapes[index].editorTiles[x * 5 + y]);
+        //         }
+        //     }
+        // }
     }
 
     public void centerAtOrigin(ref ForecastQueue forecastQueue, int index)
@@ -116,15 +116,16 @@ public class ForecastQueueEditor : UnityEditor.Editor
 
         int xMin = 5;
         int yMin = 5;
-        for (int j = 0; j < forecastQueue.forecastShapes[index].tiles.Count; j++)
+        ForecastTile[] tiles = forecastQueue.forecastShapes[index].tiles.ToArray();
+        for (int j = 0; j < tiles.Length; j++)
         {
-            if (forecastQueue.forecastShapes[index].tiles[j].editorOffset.x < xMin) xMin = forecastQueue.forecastShapes[index].tiles[j].editorOffset.x;
-            if (forecastQueue.forecastShapes[index].tiles[j].editorOffset.y < yMin) yMin = forecastQueue.forecastShapes[index].tiles[j].editorOffset.y;
+            if (tiles[j].editorOffset.x < xMin) xMin = tiles[j].editorOffset.x;
+            if (tiles[j].editorOffset.y < yMin) yMin = tiles[j].editorOffset.y;
         }
-        for (int j = 0; j < forecastQueue.forecastShapes[index].tiles.Count; j++)
+        for (int j = 0; j < tiles.Length; j++)
         {
-            forecastQueue.forecastShapes[index].tiles[j].offset.x = forecastQueue.forecastShapes[index].tiles[j].editorOffset.x - xMin;
-            forecastQueue.forecastShapes[index].tiles[j].offset.y = forecastQueue.forecastShapes[index].tiles[j].editorOffset.y - yMin;
+            tiles[j].offset.x = tiles[j].editorOffset.x - xMin;
+            tiles[j].offset.y = tiles[j].editorOffset.y - yMin;
         }
     }
 }

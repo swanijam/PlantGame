@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PGTileStateManager : MonoBehaviour
-{
+{ 
+    public static PGTileStateManager instance;
+  
     public Vector2Int dimensions;
     public List<List<PGTile>> tiles;
 
@@ -15,8 +17,13 @@ public class PGTileStateManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance != null) {
+            GameObject.DestroyImmediate(instance);
+            Debug.LogError("duplicate instance of singleton found. deleting the old one.");
+        }
+        instance = this;
         // this gets initialized by the GameManager now
-        Initialize();
+        // Initialize();
     }
     public void ClearState() {
         for (int x = 0; x < dimensions.x; x++ ) {
@@ -39,6 +46,7 @@ public class PGTileStateManager : MonoBehaviour
                     tiles[x][y].currentPlant = null;
                 }
             }
+            Debug.Log("Initialized Board State");
         }
     }
     public void InitializeAnimated() {
@@ -60,6 +68,7 @@ public class PGTileStateManager : MonoBehaviour
                 tiles[x][y].currentPlant = null;
             }
         }
+        // Debug.Log("Initialized Board State");
     }
     public bool ValidCoordinate(int x, int y) {
         if (x < 0 || x >= dimensions.x)
@@ -74,7 +83,10 @@ public class PGTileStateManager : MonoBehaviour
     public void AddWater(int x, int y, int amt) {
         if (!ValidCoordinate(x,y)) return;
     }
-
+    public bool HasPlant(int x, int y) {
+        if (!ValidCoordinate(x,y)) return true;
+        return tiles[x][y].currentPlant != null;
+    }
     // given a grid coordinate, returns position of tile + anchor*tileWidth.
     // so GetPosition(2,3, (.5f, .5f)) return the center of the tile in the 3rd row and 4th column.
     public Vector3 GetPosition(int tilex, int tiley, Vector2 anchor) {

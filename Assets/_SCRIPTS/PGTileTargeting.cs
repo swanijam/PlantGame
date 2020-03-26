@@ -4,9 +4,23 @@ using UnityEngine;
 
 public class PGTileTargeting : MonoBehaviour
 {
+    public static PGTileTargeting instance;
+    private void Awake()
+    {
+        if (instance != null) {
+            GameObject.DestroyImmediate(instance);
+            Debug.LogError("duplicate instance of singleton found. deleting the old one.");
+        }
+        instance = this;
+    }
     public Texture GUITargetImage;
     Vector3 currentTilePos;
     public Vector2Int currentTile;
+    public static Vector3 currentTileCenter {
+        get {
+            return instance.GetWorldPositionFromTileCoordinate(instance.currentTile.x, instance.currentTile.y);
+        }
+    }
     public float floorHeight = 0f;
     public Camera mainCam;
     public Transform boardOrigin;
