@@ -77,11 +77,15 @@ public class PGTileStateManager : MonoBehaviour
             return false;
         return true;
     }
-    public void AddSunlight(int x, int y, int amt) {
+    // public void AddSunlight(int x, int y, int amt) {
+    //     if (!ValidCoordinate(x,y)) return;
+    // }
+    // public void AddWater(int x, int y, int amt) {
+    //     if (!ValidCoordinate(x,y)) return;
+    // }
+    public void AddWeather(int x, int y, ForecastType type, int amt) {
         if (!ValidCoordinate(x,y)) return;
-    }
-    public void AddWater(int x, int y, int amt) {
-        if (!ValidCoordinate(x,y)) return;
+        tiles[x][y].currentPlant.ReceiveWeather(type);
     }
     public bool HasPlant(int x, int y) {
         if (!ValidCoordinate(x,y)) return true;
@@ -97,7 +101,7 @@ public class PGTileStateManager : MonoBehaviour
 [System.Serializable]
 public class PGTile {
     public GameObject soilRenderer;
-    public GameObject currentPlant;
+    public Plant currentPlant;
     // emit state change events using event "onStateChanged"
     // by using a subscriber pattern here, we can have the TileStateManager continue to not care what's rendering it.
     // a PlantRenderer, for example, should initialize by doing [TileStateManager].tiles[x,y].onStateChanged += PlantStateChange;

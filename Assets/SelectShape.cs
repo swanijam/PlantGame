@@ -7,6 +7,5 @@ public class SelectShape : MonoBehaviour
     public int shapeIndexInQueue = 0;
     public void SelectShapeNow() {
         ShapeQueue.SelectShape(shapeIndexInQueue);
-        Debug.Log("SelectShape " + shapeIndexInQueue);
     }
 }

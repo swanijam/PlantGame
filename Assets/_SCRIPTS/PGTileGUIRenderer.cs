@@ -47,11 +47,11 @@ public class PGTileGUIRenderer : MonoBehaviour
                 sunBox.width = 20;
                 sunBox.height = 20;
                 if (GUI.Button(sunBox, "S")) {
-                    state.AddSunlight(x,y,1);
+                    state.AddWeather(x,y,ForecastType.Sun, 1);
                 }
                 sunBox.x += 20;
                 if (GUI.Button(sunBox, "W")) {
-                    state.AddWater(x,y,1);
+                    state.AddWeather(x,y,ForecastType.Water, 1);
                 }
             }
         }

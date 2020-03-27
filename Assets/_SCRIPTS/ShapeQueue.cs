@@ -32,11 +32,15 @@ public class ShapeQueue : MonoBehaviour
     public ForecastShapeGroup forecastShapes;
     public void Initialize(int numDays=10) {
         shapeQueue = new List<ForecastShape>();
+        int previous = -1;
         for (int i = 0; i < numDays; i++) {
             int selection = Random.Range(0, forecastShapes.shapes.Length);
+            while (selection == previous) {
+                selection = Random.Range(0, forecastShapes.shapes.Length);
+            }
+            previous = selection;
             shapeQueue.Add(forecastShapes.shapes[selection]);
         }
-        // Debug.Log("Initialized Weather Queue");
     }
 
     public void AdvanceQueue() {
@@ -49,5 +53,9 @@ public class ShapeQueue : MonoBehaviour
     }
     public static void SelectShape(int index) {
         instance._selectedShape = index;
+        PGApplyTetramino.currentShape = instance.shapeQueue[index];
+    }
+    public static void ConsumeShape() {
+        instance.shapeQueue.RemoveAt(instance._selectedShape);
     }
 }

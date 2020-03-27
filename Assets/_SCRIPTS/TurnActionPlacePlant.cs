@@ -36,6 +36,6 @@ public class TurnActionPlacePlant : TurnAction
         previewObject = null;
         GameObject newPlantGo = Instantiate(placePlantPrefab, PGTileTargeting.currentTileCenter, Quaternion.identity);
         newPlantGo.SetActive(true);
-        PGTileStateManager.instance.tiles[PGTileTargeting.instance.currentTile.x][PGTileTargeting.instance.currentTile.y].currentPlant = newPlantGo;
+        PGTileStateManager.instance.tiles[PGTileTargeting.instance.currentTile.x][PGTileTargeting.instance.currentTile.y].currentPlant = newPlantGo.GetComponent<Plant>();
     }
 }

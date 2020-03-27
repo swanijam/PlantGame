@@ -4,21 +4,44 @@ using UnityEngine;
 
 public class PGApplyTetramino : MonoBehaviour
 {
-    public TileStateManager state;
-    public TileTargeting targeting;
-    public ForecastQueue forecastQueue;
+    public PGTileStateManager state;
+    public PGTileTargeting targeting;
+    // public ForecastQueue forecastQueue;
+    public ForecastShape _currentShape;
+    public static ForecastShape currentShape {
+        get {
+            return instance._currentShape;
+        }
+        set {
+            instance._currentShape = value;
+        }
+    }
+
+    public static PGApplyTetramino instance;
+    private void Awake()
+    {
+        if (instance != null) {
+            GameObject.Destroy(instance);
+            Debug.Log("additional PGApplyTetramino isntance found. Deleting the old one");
+        }
+        instance = this;
+    }
+
+    
 
     // public Tetramino d_activeTetramino;
     float d_currentRotation = 0f;
-
-    public void ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
-        ForecastShape _shape = forecastQueue.forecastShapes[0];
+    public static void ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
+        instance._ApplyCurrentTetramino(x,y,rotation);
+    }
+    public void _ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
+        ForecastShape _shape = currentShape;
+        ForecastType type = WeatherQueue.currentWeather;
         for (int i = 0; i < _shape.tiles.Count; i++) {
             Vector2Int offs = RotateOffset(_shape.tiles[i].offset, rotation);
-            if(_shape.tiles[i].type == ForecastType.Water) state.AddWater(x+offs.x, y+offs.y, 1);
-            if(_shape.tiles[i].type == ForecastType.Sun) state.AddSunlight(x+offs.x, y+offs.y, 1);
+            if(_shape.tiles[i].type != ForecastType.None) state.AddWeather(x+offs.x, y+offs.y, type, 1);
+            // if(_shape.tiles[i].type == ForecastType.Sun) state.AddSunlight(x+offs.x, y+offs.y, 1);
         }
-        forecastQueue.forecastShapes.RemoveAt(0);
     }
     private Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
