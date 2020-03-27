@@ -6,6 +6,7 @@ public class PGApplyTetramino : MonoBehaviour
 {
     public PGTileStateManager state;
     public PGTileTargeting targeting;
+    public ShapePositioning shapePositioning;
     // public ForecastQueue forecastQueue;
     public ForecastShape _currentShape;
     public static ForecastShape currentShape {
@@ -27,14 +28,17 @@ public class PGApplyTetramino : MonoBehaviour
         instance = this;
     }
 
-    
 
+    
     // public Tetramino d_activeTetramino;
-    float d_currentRotation = 0f;
-    public static void ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
-        instance._ApplyCurrentTetramino(x,y,rotation);
+    float currentRotation = 0f;
+    public static void ApplyCurrentTetramino() {
+        instance._ApplyCurrentTetramino();
     }
-    public void _ApplyCurrentTetramino(int x, int y, float rotation = 0f) {
+    public void _ApplyCurrentTetramino() {
+        int x = instance.targeting.currentTile.x;
+        int y = instance.targeting.currentTile.y;
+        float rotation =- currentRotation;
         ForecastShape _shape = currentShape;
         ForecastType type = WeatherQueue.currentWeather;
         for (int i = 0; i < _shape.tiles.Count; i++) {
@@ -42,6 +46,10 @@ public class PGApplyTetramino : MonoBehaviour
             if(_shape.tiles[i].type != ForecastType.None) state.AddWeather(x+offs.x, y+offs.y, type, 1);
             // if(_shape.tiles[i].type == ForecastType.Sun) state.AddSunlight(x+offs.x, y+offs.y, 1);
         }
+    }
+    private void Rotate() {
+        currentRotation += 90f;
+        shapePositioning.UpdateTileArray(Vector2Int.zero, currentRotation);
     }
     private Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
@@ -56,14 +64,35 @@ public class PGApplyTetramino : MonoBehaviour
     public delegate void TetraminoApplied();
     public event TetraminoApplied onTetraminoApplied; 
 
+    public static float PLACE_TILE_TIME = 2f; 
+    public static float ROTATE_TIME = 1f;
+    public static float DRAG_DISTANCE = 10f;
+    float pressTime = 0f;
+    bool blockUntilMouseUp = false;
+    Vector3 dragOrigin;
+    public float Delta() {
+        float delta = (Input.mousePosition - dragOrigin).magnitude;
+        return delta;
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) {
-            if (onTetraminoApplied != null) onTetraminoApplied();
-            ApplyCurrentTetramino(targeting.currentTile.x, targeting.currentTile.y, d_currentRotation);
+        if(Input.GetMouseButtonDown(0)) {
+            dragOrigin = Input.mousePosition;
         }
-        if (Input.GetKeyDown(KeyCode.R)) {
-            d_currentRotation += 90f;
+     
+        if (!blockUntilMouseUp && Input.GetMouseButton(0)) {
+            pressTime += Time.deltaTime;
+            if (pressTime >= PLACE_TILE_TIME && Delta() < DRAG_DISTANCE) {
+                blockUntilMouseUp = true;
+                ApplyCurrentTetramino();
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0) && Delta() < DRAG_DISTANCE) {
+            blockUntilMouseUp = false;
+            if (pressTime <= ROTATE_TIME) {
+                Rotate();
+            }
         }
     }
 }
