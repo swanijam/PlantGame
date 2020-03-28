@@ -37,7 +37,7 @@ public class ForecastShapePD: PropertyDrawer
                         GUI.backgroundColor = oldColor;
                     }
                 }
-                if (GUI.Button(new Rect(position.x + x * 20, position.y + y * 20 + EditorGUIUtility.singleLineHeight/2, 20, 20), ""))
+                if (GUI.Button(new Rect(position.x + x * 20, position.y + 100 - (y+1) * 20 + EditorGUIUtility.singleLineHeight/2, 20, 20), ""))
                 {
                     SerializedProperty editorTileType = editorTile.FindPropertyRelative("type");
                     editorTileType.enumValueIndex = (editorTileType.enumValueIndex + 1) % 3;
@@ -51,21 +51,34 @@ public class ForecastShapePD: PropertyDrawer
     }
     public void centerAtOrigin(SerializedProperty editorTiles)
     {
-        int xMin = 5;
-        int yMin = 5;
+        int xMin = 4;
+        int yMin = 4;
+        int xMax = 0;
+        int yMax = 0;
+        int xMid = 2;
+        int yMid = 2;        
         
         for (int j = 0; j < editorTiles.arraySize; j++)
         {
             Vector2Int editorOffset = editorTiles.GetArrayElementAtIndex(j).FindPropertyRelative("editorOffset").vector2IntValue;
-            if (editorOffset.x < xMin) xMin = editorOffset.x;
-            if (editorOffset.y < yMin) yMin = editorOffset.y;
+            ForecastType type = (ForecastType)(editorTiles.GetArrayElementAtIndex(j).FindPropertyRelative("type").enumValueIndex);
+            if (type != 0) { // find the non-null tiles and get the minimum coordinates
+                if (editorOffset.x < xMin) xMin = editorOffset.x;
+                if (editorOffset.y < yMin) yMin = editorOffset.y;
+                if (editorOffset.x > xMax) xMax = editorOffset.x;
+                if (editorOffset.y > yMax) yMax = editorOffset.y;
+            }
         }
+        xMid = (int)(((float)xMax-(float)xMin)/2f +(float)xMin + .5f);
+        yMid = (int)(((float)yMax-(float)yMin)/2f +(float)yMin + .5f);
+        // Debug.Log(xMid + "," + xMin + "," + xMax);
         for (int j = 0; j < editorTiles.arraySize; j++)
         {
             Vector2Int editorOffset = editorTiles.GetArrayElementAtIndex(j).FindPropertyRelative("editorOffset").vector2IntValue;
             Vector2Int offset = editorTiles.GetArrayElementAtIndex(j).FindPropertyRelative("offset").vector2IntValue;
-            offset.x = editorOffset.x - xMin;
-            offset.y = editorOffset.y - yMin;
+            offset.x = editorOffset.x - xMid;
+            offset.y = editorOffset.y - yMid;
+            // Debug.Log(editorOffset + "/" + offset);
             editorTiles.GetArrayElementAtIndex(j).FindPropertyRelative("offset").vector2IntValue = offset;
         }
         editorTiles.serializedObject.ApplyModifiedProperties();

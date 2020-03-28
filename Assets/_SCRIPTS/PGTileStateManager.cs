@@ -15,6 +15,9 @@ public class PGTileStateManager : MonoBehaviour
     public GameObject renderGroupPrefab;
     public GameObject SoilRenderPrefab;
 
+    [Tooltip("board starts in bottom left, tile gui starts in top left. Rather than do a big overhaul of either of the two, use this to flip coordinates automatically.")]
+    public bool invertYcoordinate;
+    
     void Awake()
     {
         if (instance != null) {

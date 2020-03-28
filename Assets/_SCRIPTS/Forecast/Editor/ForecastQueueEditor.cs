@@ -62,7 +62,7 @@ public class ForecastQueueEditor : UnityEditor.Editor
                                     }
                                 }
                             }
-                            if (GUI.Button(new Rect(rect.x + x * 20, rect.y + y * 20 + EditorGUIUtility.singleLineHeight/2, 20, 20), ""))
+                            if (GUI.Button(new Rect(rect.x + x * 20, rect.y + 100 - (y+1) * 20 + EditorGUIUtility.singleLineHeight/2, 20, 20), ""))
                             {
                                 forecastQueue.forecastShapes[index].editorTiles[x * 5 + y].type = forecastQueue.PaintMode;
                                 fillTileArray(ref forecastQueue, index);

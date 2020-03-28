@@ -571,7 +571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &257453575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,8 +777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145, y: -150}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: 125, y: -150}
+  m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360714123
 MonoBehaviour:
@@ -2515,6 +2515,7 @@ MonoBehaviour:
   renderGroupPrefab: {fileID: 0}
   SoilRenderPrefab: {fileID: 1921077278880093374, guid: 9f188b14156c7ac42845a31651a8661b,
     type: 3}
+  invertYcoordinate: 1
   animatedInit: 1
   animatedInitializeInterval: 0.05
 --- !u!4 &955103691
@@ -2699,7 +2700,7 @@ RectTransform:
   m_Father: {fileID: 385468740}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05, y: 0.2}
+  m_AnchorMin: {x: 0.04, y: 0.2}
   m_AnchorMax: {x: 0.95, y: 0.2}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
@@ -2809,79 +2810,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentShape:
     editorTiles:
-    - offset: {x: 0, y: 0}
+    - offset: {x: -2, y: -2}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: -2, y: -1}
       editorOffset: {x: 0, y: 1}
-      type: 0
-    - offset: {x: 0, y: 2}
+      type: 1
+    - offset: {x: -2, y: 0}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: -2, y: 1}
       editorOffset: {x: 0, y: 3}
       type: 0
-    - offset: {x: 0, y: 4}
+    - offset: {x: -2, y: 2}
       editorOffset: {x: 0, y: 4}
       type: 0
-    - offset: {x: 1, y: 0}
+    - offset: {x: -1, y: -2}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: 1, y: 1}
+    - offset: {x: -1, y: -1}
       editorOffset: {x: 1, y: 1}
-      type: 0
-    - offset: {x: 1, y: 2}
+      type: 1
+    - offset: {x: -1, y: 0}
       editorOffset: {x: 1, y: 2}
-      type: 1
-    - offset: {x: 1, y: 3}
+      type: 0
+    - offset: {x: -1, y: 1}
       editorOffset: {x: 1, y: 3}
-      type: 1
-    - offset: {x: 1, y: 4}
+      type: 0
+    - offset: {x: -1, y: 2}
       editorOffset: {x: 1, y: 4}
       type: 0
-    - offset: {x: 2, y: 0}
+    - offset: {x: 0, y: -2}
       editorOffset: {x: 2, y: 0}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 0, y: -1}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 2}
-      type: 0
-    - offset: {x: 2, y: 3}
-      editorOffset: {x: 2, y: 3}
       type: 1
-    - offset: {x: 2, y: 4}
+    - offset: {x: 0, y: 1}
+      editorOffset: {x: 2, y: 3}
+      type: 0
+    - offset: {x: 0, y: 2}
       editorOffset: {x: 2, y: 4}
       type: 0
-    - offset: {x: 3, y: 0}
+    - offset: {x: 1, y: -2}
       editorOffset: {x: 3, y: 0}
       type: 0
-    - offset: {x: 3, y: 1}
+    - offset: {x: 1, y: -1}
       editorOffset: {x: 3, y: 1}
-      type: 0
-    - offset: {x: 3, y: 2}
+      type: 1
+    - offset: {x: 1, y: 0}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 3, y: 3}
+    - offset: {x: 1, y: 1}
       editorOffset: {x: 3, y: 3}
-      type: 1
-    - offset: {x: 3, y: 4}
+      type: 0
+    - offset: {x: 1, y: 2}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 4, y: 0}
+    - offset: {x: 2, y: -2}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 4, y: 1}
+    - offset: {x: 2, y: -1}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 4, y: 2}
+    - offset: {x: 2, y: 0}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 4, y: 3}
+    - offset: {x: 2, y: 1}
       editorOffset: {x: 4, y: 3}
-      type: 1
-    - offset: {x: 4, y: 4}
+      type: 0
+    - offset: {x: 2, y: 2}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}
@@ -2890,7 +2891,7 @@ MonoBehaviour:
   tileSpawnHeight: 3.1
   tileWidth: 1
   currentOriginTile: {x: 0, y: 0}
-  buildNow: 0
+  buildNow: 1
 --- !u!4 &1563458946
 Transform:
   m_ObjectHideFlags: 0

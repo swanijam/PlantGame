@@ -16,6 +16,7 @@ public class ShapePositioning : MonoBehaviour
         previewTiles = new GameObject[currentShape.tiles.Count];
         // setup the tiles
         for (int i = 0; i < currentShape.tiles.Count; i++) {
+            // Debug.Log(currentShape.tiles[i].offset);
             GameObject newgo = Instantiate(previewTilePrefab, transform);
             previewTiles[i] = newgo;
             newgo.SetActive(true);
@@ -35,6 +36,7 @@ public class ShapePositioning : MonoBehaviour
     }
     private Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
+        // Debug.Log(normalizedRotation);
         if (normalizedRotation < 0f) normalizedRotation += 360f;
         if (normalizedRotation < 90f) return new Vector2Int(-offset.y, offset.x);
         if (normalizedRotation < 180f) return new Vector2Int(-offset.x, -offset.y);

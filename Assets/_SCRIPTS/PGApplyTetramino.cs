@@ -88,11 +88,14 @@ public class PGApplyTetramino : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0) && Delta() < DRAG_DISTANCE) {
-            blockUntilMouseUp = false;
-            if (pressTime <= ROTATE_TIME) {
-                Rotate();
+        if (Input.GetMouseButtonUp(0)) {
+            if (Delta() < DRAG_DISTANCE) {
+                blockUntilMouseUp = false;
+                if (pressTime <= ROTATE_TIME) {
+                    Rotate();
+                }
             }
+            pressTime = 0f;
         }
     }
 }
