@@ -51,10 +51,10 @@ public class ForecastShapePD: PropertyDrawer
     }
     public void centerAtOrigin(SerializedProperty editorTiles)
     {
-        int xMin = 4;
-        int yMin = 4;
-        int xMax = 0;
-        int yMax = 0;
+        int xMin = 5;
+        int yMin = 5;
+        int xMax = -1;
+        int yMax = -1;
         int xMid = 2;
         int yMid = 2;        
         

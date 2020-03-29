@@ -116,16 +116,25 @@ public class ForecastQueueEditor : UnityEditor.Editor
 
         int xMin = 5;
         int yMin = 5;
+        int xMax = -1;
+        int yMax = -1;
+        int xMid = 2;
+        int yMid = 2;    
+
         ForecastTile[] tiles = forecastQueue.forecastShapes[index].tiles.ToArray();
         for (int j = 0; j < tiles.Length; j++)
         {
             if (tiles[j].editorOffset.x < xMin) xMin = tiles[j].editorOffset.x;
             if (tiles[j].editorOffset.y < yMin) yMin = tiles[j].editorOffset.y;
+            if (tiles[j].editorOffset.x > xMax) xMax = tiles[j].editorOffset.x;
+            if (tiles[j].editorOffset.y > yMax) yMax = tiles[j].editorOffset.y;
         }
+        xMid = (int)(((float)xMax-(float)xMin)/2f +(float)xMin + .5f);
+        yMid = (int)(((float)yMax-(float)yMin)/2f +(float)yMin + .5f);
         for (int j = 0; j < tiles.Length; j++)
         {
-            tiles[j].offset.x = tiles[j].editorOffset.x - xMin;
-            tiles[j].offset.y = tiles[j].editorOffset.y - yMin;
+            tiles[j].offset.x = tiles[j].editorOffset.x - xMid;
+            tiles[j].offset.y = tiles[j].editorOffset.y - yMid;
         }
     }
 }
