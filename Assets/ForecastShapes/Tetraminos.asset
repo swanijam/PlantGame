@@ -14,310 +14,310 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapes:
   - editorTiles:
-    - offset: {x: 0, y: 0}
+    - offset: {x: -1, y: -4}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: -1, y: -3}
       editorOffset: {x: 0, y: 1}
       type: 0
-    - offset: {x: 0, y: 2}
+    - offset: {x: -1, y: -2}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: -1, y: -1}
       editorOffset: {x: 0, y: 3}
       type: 1
-    - offset: {x: 0, y: 4}
+    - offset: {x: -1, y: 0}
       editorOffset: {x: 0, y: 4}
       type: 1
-    - offset: {x: 1, y: 0}
+    - offset: {x: 0, y: -4}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: 1, y: 1}
+    - offset: {x: 0, y: -3}
       editorOffset: {x: 1, y: 1}
       type: 0
-    - offset: {x: 1, y: 2}
+    - offset: {x: 0, y: -2}
       editorOffset: {x: 1, y: 2}
       type: 0
-    - offset: {x: 1, y: 3}
+    - offset: {x: 0, y: -1}
       editorOffset: {x: 1, y: 3}
       type: 0
-    - offset: {x: 1, y: 4}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 4}
       type: 1
-    - offset: {x: 2, y: 0}
+    - offset: {x: 1, y: -4}
       editorOffset: {x: 2, y: 0}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 1, y: -3}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 1, y: -2}
       editorOffset: {x: 2, y: 2}
       type: 0
-    - offset: {x: 2, y: 3}
+    - offset: {x: 1, y: -1}
       editorOffset: {x: 2, y: 3}
       type: 0
-    - offset: {x: 2, y: 4}
+    - offset: {x: 1, y: 0}
       editorOffset: {x: 2, y: 4}
       type: 1
-    - offset: {x: 3, y: 0}
+    - offset: {x: 2, y: -4}
       editorOffset: {x: 3, y: 0}
       type: 0
-    - offset: {x: 3, y: 1}
+    - offset: {x: 2, y: -3}
       editorOffset: {x: 3, y: 1}
       type: 0
-    - offset: {x: 3, y: 2}
+    - offset: {x: 2, y: -2}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 3, y: 3}
+    - offset: {x: 2, y: -1}
       editorOffset: {x: 3, y: 3}
       type: 0
-    - offset: {x: 3, y: 4}
+    - offset: {x: 2, y: 0}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 4, y: 0}
+    - offset: {x: 3, y: -4}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 4, y: 1}
+    - offset: {x: 3, y: -3}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 4, y: 2}
+    - offset: {x: 3, y: -2}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 4, y: 3}
+    - offset: {x: 3, y: -1}
       editorOffset: {x: 4, y: 3}
       type: 0
-    - offset: {x: 4, y: 4}
+    - offset: {x: 3, y: 0}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}
   - editorTiles:
-    - offset: {x: 0, y: 0}
+    - offset: {x: -1, y: -4}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: -1, y: -3}
       editorOffset: {x: 0, y: 1}
       type: 0
-    - offset: {x: 0, y: 2}
+    - offset: {x: -1, y: -2}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: -1, y: -1}
       editorOffset: {x: 0, y: 3}
       type: 1
-    - offset: {x: 0, y: 4}
+    - offset: {x: -1, y: 0}
       editorOffset: {x: 0, y: 4}
       type: 1
-    - offset: {x: 1, y: 0}
+    - offset: {x: 0, y: -4}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: 1, y: 1}
+    - offset: {x: 0, y: -3}
       editorOffset: {x: 1, y: 1}
       type: 0
-    - offset: {x: 1, y: 2}
+    - offset: {x: 0, y: -2}
       editorOffset: {x: 1, y: 2}
       type: 0
-    - offset: {x: 1, y: 3}
+    - offset: {x: 0, y: -1}
       editorOffset: {x: 1, y: 3}
       type: 1
-    - offset: {x: 1, y: 4}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 4}
       type: 1
-    - offset: {x: 2, y: 0}
+    - offset: {x: 1, y: -4}
       editorOffset: {x: 2, y: 0}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 1, y: -3}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 1, y: -2}
       editorOffset: {x: 2, y: 2}
       type: 0
-    - offset: {x: 2, y: 3}
+    - offset: {x: 1, y: -1}
       editorOffset: {x: 2, y: 3}
       type: 0
-    - offset: {x: 2, y: 4}
+    - offset: {x: 1, y: 0}
       editorOffset: {x: 2, y: 4}
       type: 0
-    - offset: {x: 3, y: 0}
+    - offset: {x: 2, y: -4}
       editorOffset: {x: 3, y: 0}
       type: 0
-    - offset: {x: 3, y: 1}
+    - offset: {x: 2, y: -3}
       editorOffset: {x: 3, y: 1}
       type: 0
-    - offset: {x: 3, y: 2}
+    - offset: {x: 2, y: -2}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 3, y: 3}
+    - offset: {x: 2, y: -1}
       editorOffset: {x: 3, y: 3}
       type: 0
-    - offset: {x: 3, y: 4}
+    - offset: {x: 2, y: 0}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 4, y: 0}
+    - offset: {x: 3, y: -4}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 4, y: 1}
+    - offset: {x: 3, y: -3}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 4, y: 2}
+    - offset: {x: 3, y: -2}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 4, y: 3}
+    - offset: {x: 3, y: -1}
       editorOffset: {x: 4, y: 3}
       type: 0
-    - offset: {x: 4, y: 4}
+    - offset: {x: 3, y: 0}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}
   - editorTiles:
-    - offset: {x: 0, y: 0}
+    - offset: {x: -1, y: -4}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: -1, y: -3}
       editorOffset: {x: 0, y: 1}
       type: 0
-    - offset: {x: 0, y: 2}
+    - offset: {x: -1, y: -2}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: -1, y: -1}
       editorOffset: {x: 0, y: 3}
       type: 0
-    - offset: {x: 0, y: 4}
+    - offset: {x: -1, y: 0}
       editorOffset: {x: 0, y: 4}
       type: 1
-    - offset: {x: 1, y: 0}
+    - offset: {x: 0, y: -4}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: 1, y: 1}
+    - offset: {x: 0, y: -3}
       editorOffset: {x: 1, y: 1}
       type: 0
-    - offset: {x: 1, y: 2}
+    - offset: {x: 0, y: -2}
       editorOffset: {x: 1, y: 2}
       type: 0
-    - offset: {x: 1, y: 3}
+    - offset: {x: 0, y: -1}
       editorOffset: {x: 1, y: 3}
       type: 1
-    - offset: {x: 1, y: 4}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 4}
       type: 1
-    - offset: {x: 2, y: 0}
+    - offset: {x: 1, y: -4}
       editorOffset: {x: 2, y: 0}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 1, y: -3}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 1, y: -2}
       editorOffset: {x: 2, y: 2}
       type: 0
-    - offset: {x: 2, y: 3}
+    - offset: {x: 1, y: -1}
       editorOffset: {x: 2, y: 3}
       type: 0
-    - offset: {x: 2, y: 4}
+    - offset: {x: 1, y: 0}
       editorOffset: {x: 2, y: 4}
       type: 1
-    - offset: {x: 3, y: 0}
+    - offset: {x: 2, y: -4}
       editorOffset: {x: 3, y: 0}
       type: 0
-    - offset: {x: 3, y: 1}
+    - offset: {x: 2, y: -3}
       editorOffset: {x: 3, y: 1}
       type: 0
-    - offset: {x: 3, y: 2}
+    - offset: {x: 2, y: -2}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 3, y: 3}
+    - offset: {x: 2, y: -1}
       editorOffset: {x: 3, y: 3}
       type: 0
-    - offset: {x: 3, y: 4}
+    - offset: {x: 2, y: 0}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 4, y: 0}
+    - offset: {x: 3, y: -4}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 4, y: 1}
+    - offset: {x: 3, y: -3}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 4, y: 2}
+    - offset: {x: 3, y: -2}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 4, y: 3}
+    - offset: {x: 3, y: -1}
       editorOffset: {x: 4, y: 3}
       type: 0
-    - offset: {x: 4, y: 4}
+    - offset: {x: 3, y: 0}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}
   - editorTiles:
-    - offset: {x: 0, y: 0}
+    - offset: {x: -1, y: -4}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: -1, y: -3}
       editorOffset: {x: 0, y: 1}
       type: 0
-    - offset: {x: 0, y: 2}
+    - offset: {x: -1, y: -2}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: -1, y: -1}
       editorOffset: {x: 0, y: 3}
       type: 0
-    - offset: {x: 0, y: 4}
+    - offset: {x: -1, y: 0}
       editorOffset: {x: 0, y: 4}
       type: 1
-    - offset: {x: 1, y: 0}
+    - offset: {x: 0, y: -4}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: 1, y: 1}
+    - offset: {x: 0, y: -3}
       editorOffset: {x: 1, y: 1}
       type: 0
-    - offset: {x: 1, y: 2}
+    - offset: {x: 0, y: -2}
       editorOffset: {x: 1, y: 2}
       type: 0
-    - offset: {x: 1, y: 3}
+    - offset: {x: 0, y: -1}
       editorOffset: {x: 1, y: 3}
       type: 1
-    - offset: {x: 1, y: 4}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 4}
       type: 1
-    - offset: {x: 2, y: 0}
+    - offset: {x: 1, y: -4}
       editorOffset: {x: 2, y: 0}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 1, y: -3}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 1, y: -2}
       editorOffset: {x: 2, y: 2}
       type: 0
-    - offset: {x: 2, y: 3}
+    - offset: {x: 1, y: -1}
       editorOffset: {x: 2, y: 3}
       type: 1
-    - offset: {x: 2, y: 4}
+    - offset: {x: 1, y: 0}
       editorOffset: {x: 2, y: 4}
       type: 0
-    - offset: {x: 3, y: 0}
+    - offset: {x: 2, y: -4}
       editorOffset: {x: 3, y: 0}
       type: 0
-    - offset: {x: 3, y: 1}
+    - offset: {x: 2, y: -3}
       editorOffset: {x: 3, y: 1}
       type: 0
-    - offset: {x: 3, y: 2}
+    - offset: {x: 2, y: -2}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 3, y: 3}
+    - offset: {x: 2, y: -1}
       editorOffset: {x: 3, y: 3}
       type: 0
-    - offset: {x: 3, y: 4}
+    - offset: {x: 2, y: 0}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 4, y: 0}
+    - offset: {x: 3, y: -4}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 4, y: 1}
+    - offset: {x: 3, y: -3}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 4, y: 2}
+    - offset: {x: 3, y: -2}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 4, y: 3}
+    - offset: {x: 3, y: -1}
       editorOffset: {x: 4, y: 3}
       type: 0
-    - offset: {x: 4, y: 4}
+    - offset: {x: 3, y: 0}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}

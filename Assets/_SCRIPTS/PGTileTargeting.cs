@@ -29,7 +29,7 @@ public class PGTileTargeting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 planePos = GetPlaneIntersection();
+        Vector3 planePos = GetPlaneIntersection(Input.mousePosition);
         GetNearestTileCenterAndTileCoordinateFromWorldPosition(planePos, out currentTilePos, out currentTile, floorHeight);
     }
 
@@ -59,6 +59,12 @@ public class PGTileTargeting : MonoBehaviour
         snappedCorner.z += tileWidth/2f;
         return snappedCorner;
     }
+    public Vector3 GetWorldPositionFromScreenPosition(Vector3 mousePosition) {
+        return GetPlaneIntersection(mousePosition);
+    }
+    public Vector2Int GetTileCoordinateFromScreenPosition(Vector3 mousePosition) {
+        return GetTileCoordinateFromWorldPosition(GetPlaneIntersection(mousePosition));
+    }
 
     private void OnGUI()
     {
@@ -74,9 +80,9 @@ public class PGTileTargeting : MonoBehaviour
         GUI.Box(mouseTileLabelRect, currentTile.ToString());
     }
 
-    private Vector3 GetPlaneIntersection()
+    private Vector3 GetPlaneIntersection(Vector3 mousePosition)
     {
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainCam.ScreenPointToRay(mousePosition);
         float delta = ray.origin.y - floorHeight;
         Vector3 dirNorm = ray.direction / ray.direction.y;
         Vector3 intersectionPos = ray.origin - dirNorm * delta;

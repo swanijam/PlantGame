@@ -285,11 +285,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137912897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.97963643, y: -1.8049086, z: -1.5624229}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1563458946}
-  m_Father: {fileID: 853578567}
+  m_Children: []
+  m_Father: {fileID: 1563458946}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &137912899
@@ -305,9 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 955103690}
-  targeting: {fileID: 421440397}
   shapePositioning: {fileID: 1563458945}
-  _currentShape:
+  currentShape:
     editorTiles:
     - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 0}
@@ -1937,7 +1935,7 @@ Transform:
   - {fileID: 737682933}
   - {fileID: 462485622}
   m_Father: {fileID: 1563458946}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &853578566
 GameObject:
@@ -1966,7 +1964,7 @@ Transform:
   m_LocalPosition: {x: 0.97963643, y: 1.8049086, z: 1.5624229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 137912898}
+  - {fileID: 1563458946}
   - {fileID: 421440396}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -2421,90 +2419,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b284ed1f62dd245beb1093b05f83d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShape:
+  rotation: 0
+  previewTilePrefab: {fileID: 841345694}
+  tileSpawnHeight: 3.1
+  tileWidth: 1
+  applyForecastShape: {fileID: 137912899}
+  _currentShape:
     editorTiles:
-    - offset: {x: -2, y: -1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 0}
       type: 0
-    - offset: {x: -2, y: 0}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 1}
       type: 0
-    - offset: {x: -2, y: 1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 2}
       type: 0
-    - offset: {x: -2, y: 2}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 3}
       type: 0
-    - offset: {x: -2, y: 3}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 0, y: 4}
       type: 0
-    - offset: {x: -1, y: -1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 0}
       type: 0
-    - offset: {x: -1, y: 0}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 1}
-      type: 1
-    - offset: {x: -1, y: 1}
+      type: 0
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 2}
       type: 0
-    - offset: {x: -1, y: 2}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 3}
       type: 0
-    - offset: {x: -1, y: 3}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 1, y: 4}
       type: 0
-    - offset: {x: 0, y: -1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 0}
       type: 0
     - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 1}
       type: 0
-    - offset: {x: 0, y: 1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 2}
-      type: 1
-    - offset: {x: 0, y: 2}
+      type: 0
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 3}
       type: 0
-    - offset: {x: 0, y: 3}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 2, y: 4}
       type: 0
-    - offset: {x: 1, y: -1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 3, y: 0}
-      type: 1
-    - offset: {x: 1, y: 0}
+      type: 0
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 3, y: 1}
-      type: 1
-    - offset: {x: 1, y: 1}
+      type: 0
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 3, y: 2}
       type: 0
-    - offset: {x: 1, y: 2}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 3, y: 3}
       type: 0
-    - offset: {x: 1, y: 3}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 3, y: 4}
       type: 0
-    - offset: {x: 2, y: -1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 4, y: 0}
       type: 0
-    - offset: {x: 2, y: 0}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 4, y: 1}
       type: 0
-    - offset: {x: 2, y: 1}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 4, y: 2}
       type: 0
-    - offset: {x: 2, y: 2}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 4, y: 3}
       type: 0
-    - offset: {x: 2, y: 3}
+    - offset: {x: 0, y: 0}
       editorOffset: {x: 4, y: 4}
       type: 0
     forecastQueue: {fileID: 0}
-  rotation: 0
-  previewTilePrefab: {fileID: 841345694}
-  tileSpawnHeight: 3.1
-  tileWidth: 1
   currentOriginTile: {x: 0, y: 0}
-  buildNow: 1
 --- !u!4 &1563458946
 Transform:
   m_ObjectHideFlags: 0
@@ -2513,11 +2511,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563458944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.97963643, y: -1.8049086, z: -1.5624229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 137912898}
   - {fileID: 841345698}
-  m_Father: {fileID: 137912898}
+  m_Father: {fileID: 853578567}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581

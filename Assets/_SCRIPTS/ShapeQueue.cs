@@ -53,7 +53,8 @@ public class ShapeQueue : MonoBehaviour
     }
     public static void SelectShape(int index) {
         instance._selectedShape = index;
-        PGApplyTetramino.currentShape = instance.shapeQueue[index];
+        ShapePositioning.currentShape = instance.shapeQueue[index];
+        ShapePositioning.instance.BuildTileArray(); // maybe do this within the turn action? not sure
     }
     public static void ConsumeShape() {
         instance.shapeQueue.RemoveAt(instance._selectedShape);
