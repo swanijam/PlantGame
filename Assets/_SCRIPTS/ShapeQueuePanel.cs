@@ -14,6 +14,8 @@ public class ShapeQueuePanel : MonoBehaviour
             // build a fancy UI representing the shape
             newGo = Instantiate(shapeButtonPrefab, shapeGroup.position, Quaternion.identity, shapeGroup);
             newGo.GetComponent<SelectShape>().shapeIndexInQueue = i;
+            newGo.GetComponent<ShapeImageAssembler>().shape = shape[i];
+            newGo.GetComponent<ShapeImageAssembler>().UpdateVisual();
             newGo.SetActive(true);
         }
         // Debug.Log("Initialized Weather Queue Panel");
