@@ -6,7 +6,8 @@ public class TurnActionApplyWeather : TurnAction
 {
     public override void PrepareAction() {
         base.PrepareAction();
-        // create tetramino dynamic preview object
+        ShapePositioning.instance.onPlaceShape -= CompleteTurn;
+        ShapePositioning.instance.onPlaceShape += CompleteTurn;
     }
 
     private void Update()
@@ -20,8 +21,14 @@ public class TurnActionApplyWeather : TurnAction
         }
     }
 
+    // called as a subscriber to an event on ShapePositioning, triggered when a shape is applied.
     public override void CompleteTurn() {
-        // remove chosen tetramino from list
-        // update plant needs
+        base.CompleteTurn();
+        // Debug.Log("completing turn", this);
+        // note that ShapePositioning, the utility responsible for actually using a forecast shape, calls ApplyTetramino on its own.
+        //   so here, we don't do any of that and just assume that's happening and the interaction is done.
+        PlantGameManager.instance.ClearForecastShapeSelection();
+        PlantGameManager.instance.AdvanceWeather();
+        ShapePositioning.instance.onPlaceShape -= CompleteTurn;
     }
 }

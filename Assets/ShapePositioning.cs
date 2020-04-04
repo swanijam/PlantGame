@@ -18,7 +18,8 @@ public class ShapePositioning : MonoBehaviour
     }
     [HideInInspector]
     public float rotation;
-    public GameObject previewTilePrefab;
+    public GameObject previewTileWtr;
+    public GameObject previewTileSun;
     public float tileSpawnHeight = 6f;
     public float tileWidth = 1f;
     public PGApplyTetramino applyForecastShape;
@@ -30,18 +31,19 @@ public class ShapePositioning : MonoBehaviour
         }
         set {
             instance._currentShape = value;
-            instance.applyForecastShape.currentShape = value;
         }
     }
     
-    public static float PLACE_TILE_TIME = 2f; 
-    public static float ROTATE_TIME = 1f;
+    public static float PLACE_TILE_TIME = .75f; 
+    public static float ROTATE_TIME = .4f;
     public static float DRAG_DISTANCE = 10f;
     public Vector2Int currentOriginTile;
 
+    public delegate void PlaceShapeEvenet();
+    public event PlaceShapeEvenet onPlaceShape;
 
     GameObject[] previewTiles;
-    public void BuildTileArray() {
+    public void ClearPreviewTiles() {
         if (previewTiles != null) {
             for (int i = 0; i < previewTiles.Length; i++) {
                 GameObject g = previewTiles[i];
@@ -49,11 +51,25 @@ public class ShapePositioning : MonoBehaviour
                 GameObject.Destroy(g);
             }
         }
+    }
+    public void BuildTileArray() {
+        ClearPreviewTiles();
         previewTiles = new GameObject[currentShape.tiles.Count];
         // setup the tiles
         for (int i = 0; i < currentShape.tiles.Count; i++) {
             // Debug.Log(currentShape.tiles[i].offset);
-            GameObject newgo = Instantiate(previewTilePrefab, transform);
+            GameObject newgo;
+            switch(WeatherQueue.currentWeather) {
+                case ForecastType.Water:
+                    newgo = Instantiate(previewTileWtr, transform);
+                    break;
+                case ForecastType.Sun:
+                    newgo = Instantiate(previewTileSun, transform);
+                    break;
+                default:
+                    newgo = Instantiate(previewTileWtr, transform);
+                    break;
+            }
             previewTiles[i] = newgo;
             newgo.SetActive(true);
             Vector3 pos = PGTileTargeting.instance.GetWorldPositionFromTileCoordinate(currentOriginTile.x, currentOriginTile.y);
@@ -105,7 +121,8 @@ public class ShapePositioning : MonoBehaviour
             pressTime += Time.deltaTime;
             if (pressTime >= PLACE_TILE_TIME && Delta() < DRAG_DISTANCE) {
                 blockUntilMouseUp = true;
-                applyForecastShape.ApplyCurrentTetramino();
+                applyForecastShape.ApplyCurrentTetramino(currentShape);
+                if (onPlaceShape != null)  onPlaceShape();
             }
         }
 
@@ -124,14 +141,14 @@ public class ShapePositioning : MonoBehaviour
             pressTime = 0f;
         }
     }
-
 }
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(ShapePositioning))]
 public class ShapePositioningEditor : Editor{
     SerializedProperty currentShape;
-    SerializedProperty previewTilePrefab;
+    SerializedProperty previewTileWtr;
+    SerializedProperty previewTileSun;
     SerializedProperty tileSpawnHeight;
     SerializedProperty tileWidth;
     SerializedProperty currentOriginTile;
@@ -140,7 +157,8 @@ public class ShapePositioningEditor : Editor{
     private void OnEnable()
     {
         currentShape = serializedObject.FindProperty("_currentShape");
-        previewTilePrefab = serializedObject.FindProperty("previewTilePrefab");
+        previewTileWtr = serializedObject.FindProperty("previewTileWtr");
+        previewTileSun = serializedObject.FindProperty("previewTileSun");
         tileSpawnHeight = serializedObject.FindProperty("tileSpawnHeight");
         tileWidth = serializedObject.FindProperty("tileWidth");
         currentOriginTile = serializedObject.FindProperty("currentOriginTile");
@@ -156,7 +174,8 @@ public class ShapePositioningEditor : Editor{
         EditorGUILayout.PropertyField(currentOriginTile);
         GUI.enabled = true;
         EditorGUILayout.PropertyField(applyForecastShape);
-        EditorGUILayout.PropertyField(previewTilePrefab);
+        EditorGUILayout.PropertyField(previewTileWtr);
+        EditorGUILayout.PropertyField(previewTileSun);
         EditorGUILayout.PropertyField(tileSpawnHeight);
         EditorGUILayout.PropertyField(tileWidth);
         serializedObject.ApplyModifiedProperties();

@@ -6,6 +6,7 @@ public class TurnAction : MonoBehaviour
 {
     [HideInInspector]
     public bool awaitingInput = false;
+    public bool done = false;
     public virtual void PrepareAction() {
         awaitingInput = true;
     }
@@ -17,5 +18,6 @@ public class TurnAction : MonoBehaviour
         if (onTurnComplete != null) {
             onTurnComplete();
         }
+        done = true;
     }
 }

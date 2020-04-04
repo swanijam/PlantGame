@@ -21,6 +21,11 @@ public class WeatherQueue : MonoBehaviour
             return instance.weatherQueue[0];
         }
     }
+    public static int numDays {
+        get {
+            return instance.weatherQueue.Count;
+        }
+    }
 
     public static ForecastType GetWeather(int day) {
         return instance.weatherQueue.ToArray()[day-1];
@@ -44,8 +49,7 @@ public class WeatherQueue : MonoBehaviour
         }
         // Debug.Log("Initialized Weather Queue");
     }
-
-    public void AdvanceQueue() {
+    public void AdvanceWeather() {
         weatherQueue.RemoveAt(0);
     }
 }

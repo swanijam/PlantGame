@@ -88,7 +88,7 @@ public class PGTileStateManager : MonoBehaviour
     // }
     public void AddWeather(int x, int y, ForecastType type, int amt) {
         if (!ValidCoordinate(x,y)) return;
-        tiles[x][y].currentPlant.ReceiveWeather(type);
+        if (tiles[x][y].currentPlant != null) tiles[x][y].currentPlant.ReceiveWeather(type);
     }
     public bool HasPlant(int x, int y) {
         if (!ValidCoordinate(x,y)) return true;
