@@ -73,6 +73,15 @@ public class PGTileStateManager : MonoBehaviour
         }
         // Debug.Log("Initialized Board State");
     }
+    public void AdvanceTurnsForPlants() {
+        for (int x = 0; x < dimensions.x; x++ ) {
+            for (int y = 0; y < dimensions.y; y++ ) {
+                if (tiles[x][y].currentPlant != null) {
+                    tiles[x][y].currentPlant.AdvanceTurn();
+                }
+            }
+        }
+    }
     public bool ValidCoordinate(int x, int y) {
         if (x < 0 || x >= dimensions.x)
             return false;
@@ -87,6 +96,7 @@ public class PGTileStateManager : MonoBehaviour
     //     if (!ValidCoordinate(x,y)) return;
     // }
     public void AddWeather(int x, int y, ForecastType type, int amt) {
+        // we aren't using 'ammount' at this time
         if (!ValidCoordinate(x,y)) return;
         if (tiles[x][y].currentPlant != null) tiles[x][y].currentPlant.ReceiveWeather(type);
     }

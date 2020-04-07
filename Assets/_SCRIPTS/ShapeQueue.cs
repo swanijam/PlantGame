@@ -56,11 +56,9 @@ public class ShapeQueue : MonoBehaviour
     public static int selectedShape {
         get { return instance._selectedShape; }
     }
-    public static void SelectShape(int index) {
+    public static void SelectShape(int index, float rotation=0f) {
         instance._selectedShape = index;
-        Debug.Log(index);
-        ShapePositioning.currentShape = instance.shapeQueue[index];
-        ShapePositioning.instance.BuildTileArray(); // maybe do this within the turn action? not sure
+        ShapePositioning.instance.BeginDraggingPiece(instance.shapeQueue[index], rotation);
     }
     public static void ConsumeShape() {
         instance.shapeQueue.RemoveAt(instance._selectedShape);

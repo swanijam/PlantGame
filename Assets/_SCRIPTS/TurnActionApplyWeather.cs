@@ -30,5 +30,6 @@ public class TurnActionApplyWeather : TurnAction
         PlantGameManager.instance.ClearForecastShapeSelection();
         PlantGameManager.instance.AdvanceWeather();
         ShapePositioning.instance.onPlaceShape -= CompleteTurn;
+        PGTileStateManager.instance.AdvanceTurnsForPlants();  
     }
 }

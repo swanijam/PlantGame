@@ -56,7 +56,9 @@ public class ShapePositioning : MonoBehaviour
         ClearPreviewTiles();
         previewTiles = new GameObject[currentShape.tiles.Count];
         // setup the tiles
+        // Debug.Log("===========================");
         for (int i = 0; i < currentShape.tiles.Count; i++) {
+            // Debug.Log(currentShape.tiles[i].offset);
             // Debug.Log(currentShape.tiles[i].offset);
             GameObject newgo;
             switch(WeatherQueue.currentWeather) {
@@ -77,29 +79,64 @@ public class ShapePositioning : MonoBehaviour
             previewTiles[i].transform.position = pos + new Vector3(currentShape.tiles[i].offset.x, 0f, currentShape.tiles[i].offset.y) * tileWidth;
         }        
     }
+    IEnumerator BuildTileArraySlow() {
+        // ClearPreviewTiles();
+        // previewTiles = new GameObject[currentShape.tiles.Count];
+        // // setup the tiles
+        // Debug.Log("===========================");
+        // for (int i = 0; i < currentShape.tiles.Count; i++) {
+        //     Debug.Log(currentShape.tiles[i].offset);
+        //     // Debug.Log(currentShape.tiles[i].offset);
+        //     GameObject newgo;
+        //     switch(WeatherQueue.currentWeather) {
+        //         case ForecastType.Water:
+        //             newgo = Instantiate(previewTileWtr, transform);
+        //             break;
+        //         case ForecastType.Sun:
+        //             newgo = Instantiate(previewTileSun, transform);
+        //             break;
+        //         default:
+        //             newgo = Instantiate(previewTileWtr, transform);
+        //             break;
+        //     }
+        //     previewTiles[i] = newgo;
+        //     newgo.SetActive(true);
+        //     Vector3 pos = PGTileTargeting.instance.GetWorldPositionFromTileCoordinate(currentOriginTile.x, currentOriginTile.y);
+        //     pos.y = tileSpawnHeight;
+        //     previewTiles[i].transform.position = pos + new Vector3(currentShape.tiles[i].offset.x, 0f, currentShape.tiles[i].offset.y) * tileWidth;
+        //     yield return new WaitForSeconds(2f);
+        // }  
+        GameObject newgo = Instantiate(previewTileWtr, transform);
+        newgo.SetActive(true);
+        while(true) {
+            newgo.transform.position = newgo.transform.position + new Vector3(0f, 0f, 1f) * tileWidth;
+            yield return new WaitForSeconds(2f);
+        }
+    }
     public void UpdateTileArray() {
         for (int i = 0; i < currentShape.tiles.Count; i++) {
             Vector3 pos = PGTileTargeting.instance.GetWorldPositionFromTileCoordinate(currentOriginTile.x, currentOriginTile.y);
             pos.y = tileSpawnHeight;
             Vector2Int offset = RotateOffset(currentShape.tiles[i].offset, rotation);
+            // Debug.Log(rotation +", "+ offset +", "+ currentShape.tiles[i].offset);
             previewTiles[i].transform.position = pos + new Vector3(offset.x, 0f, offset.y) * tileWidth;
         }        
     }
-    public void UpdateOrigin(Vector2Int delta) {
-        currentOriginTile = currentOriginTile + delta;
+    public void UpdateOrigin(Vector2Int newOriginTile) {
+        currentOriginTile = newOriginTile;
         UpdateTileArray();
     }
-    public void UpdateRotation(float delta) {
-        rotation += delta;
+    public void UpdateRotation(float newRotation) {
+        rotation = newRotation;
         UpdateTileArray();
     }
     public Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
-        // Debug.Log(normalizedRotation);
         if (normalizedRotation < 0f) normalizedRotation += 360f;
-        if (normalizedRotation < 90f) return new Vector2Int(-offset.y, offset.x);
-        if (normalizedRotation < 180f) return new Vector2Int(-offset.x, -offset.y);
-        if (normalizedRotation < 270f) return new Vector2Int(offset.y, -offset.x);
+        if (normalizedRotation == 0f) return offset;
+        if (normalizedRotation == 90f) return new Vector2Int(-offset.y, offset.x);
+        if (normalizedRotation == 180f) return new Vector2Int(-offset.x, -offset.y);
+        if (normalizedRotation == 270f) return new Vector2Int(offset.y, -offset.x);
         // if (normalizedRotation < 360f) return offset;
         else return offset; // same thing as above comment, but satisfies "all code paths return a value"
     }
@@ -113,33 +150,35 @@ public class ShapePositioning : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0)) {
-            dragOrigin = Input.mousePosition;
-        }
-     
-        if (!blockUntilMouseUp && Input.GetMouseButton(0)) {
-            pressTime += Time.deltaTime;
-            if (pressTime >= PLACE_TILE_TIME && Delta() < DRAG_DISTANCE) {
-                blockUntilMouseUp = true;
-                applyForecastShape.ApplyCurrentTetramino(currentShape);
-                if (onPlaceShape != null)  onPlaceShape();
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0)) {
-            if (Delta() < DRAG_DISTANCE) {
-                blockUntilMouseUp = false;
-                if (pressTime <= ROTATE_TIME) {
-                    UpdateRotation(90f);
-                }
-            } else {
+        // update shape preview position
+        if (currentlyDragging) {
                 Vector2Int a, b;
-                a = PGTileTargeting.instance.GetTileCoordinateFromScreenPosition(dragOrigin);
+                // a = PGTileTargeting.instance.GetTileCoordinateFromScreenPosition(dragOrigin);
                 b = PGTileTargeting.instance.GetTileCoordinateFromScreenPosition(Input.mousePosition);
-                UpdateOrigin(b-a);
-            }
-            pressTime = 0f;
+                UpdateOrigin(b);
         }
+        
+        // end drag if we let go
+        if (Input.GetMouseButtonUp(0)) {
+            if (currentlyDragging) EndDragging();
+        }
+    }
+
+    bool currentlyDragging = false;
+    public void BeginDraggingPiece(ForecastShape shape, float _rotation = 0f) {
+        rotation = _rotation;
+        dragOrigin = Input.mousePosition;
+        currentShape = shape;
+        currentlyDragging = true;
+        // StartCoroutine(BuildTileArraySlow());
+        BuildTileArray();
+        UpdateTileArray();
+    }
+    public void EndDragging() {
+        applyForecastShape.ApplyCurrentTetramino(currentShape);
+        if (onPlaceShape != null)  onPlaceShape();
+        currentShape = null;
+        currentlyDragging = false;
     }
 }
 
