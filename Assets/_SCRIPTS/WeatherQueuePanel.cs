@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeatherQueuePanel : MonoBehaviour
 {
-    public GameObject rainWeatherImgPrefab, sunWeatherImgPrefab, noWeatherImgPrefab;
+    public GameObject rainWeatherImgPrefab, sunWeatherImgPrefab, noWeatherImgPrefab, lightningWeatherImgPrefab;
     public RectTransform weatherGroup;
 
     List<GameObject> weatherItems;
@@ -19,6 +19,9 @@ public class WeatherQueuePanel : MonoBehaviour
                 break;
                 case ForecastType.Sun:
                     newGo = Instantiate(sunWeatherImgPrefab, weatherGroup.position, Quaternion.identity, weatherGroup);
+                break;
+                case ForecastType.Lightning:
+                    newGo = Instantiate(lightningWeatherImgPrefab, weatherGroup.position, Quaternion.identity, weatherGroup);
                 break;
                 default:
                     newGo = Instantiate(noWeatherImgPrefab, weatherGroup.position, Quaternion.identity, weatherGroup);

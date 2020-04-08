@@ -27,7 +27,7 @@ public class PlantGameManager : MonoBehaviour
         weatherQueue.Initialize();
         weatherQueuePanel.Initialize();
         tileStateManager.Initialize();
-        shapeQueue.Initialize();
+        shapeQueue.Initialize(WeatherQueue.numDays);
         shapeQueuePanel.Initialize();
         turnQueue.Initialize();
     }
@@ -35,6 +35,7 @@ public class PlantGameManager : MonoBehaviour
     public void ClearForecastShapeSelection() {
         shapePositioning.ClearPreviewTiles();
         shapePositioning._currentShape = null;
+        shapeQueuePanel.CancelPreparedSelections();
         shapeQueuePanel.RemoveElement(shapeQueue._selectedShape);
         shapeQueue.RemoveSelectedShape();
     }
@@ -42,5 +43,11 @@ public class PlantGameManager : MonoBehaviour
     public void AdvanceWeather() {
         weatherQueue.AdvanceWeather();
         weatherQueuePanel.AdvanceWeatherQueuePanel();
+    }
+
+    public UnityEngine.UI.Text endText;
+    public void CompleteGame() {
+        endText.gameObject.SetActive(true);
+        endText.text = "U GOT " + tileStateManager.DoAHarvest() + " PLANTS TO HARVEST";
     }
 }

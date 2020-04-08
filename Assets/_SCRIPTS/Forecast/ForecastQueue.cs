@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //State of each tile
-public enum ForecastType {None, Water, Sun};
+public enum ForecastType {None, Water, Sun, Lightning};
  
 public class ForecastQueue : MonoBehaviour
 {

@@ -31,7 +31,7 @@ public class TurnQueue : MonoBehaviour
             go = Instantiate(plantTurnPrefab, TurnActionsGroup);
             turnQueue.Add(go.GetComponent<TurnAction>());
         }
-        for ( int n = 0; n < WeatherQueue.numDays; n++) {
+        for (int n = 0; n < WeatherQueue.numDays; n++) {
             go = Instantiate(shapeTurnPrefab, TurnActionsGroup);
             turnQueue.Add(go.GetComponent<TurnAction>());
         }
@@ -50,6 +50,6 @@ public class TurnQueue : MonoBehaviour
             }
             turnQueue[i].gameObject.SetActive(false);
         }
-        Debug.Log("COMPLETED LEVEL");
+        PlantGameManager.instance.CompleteGame();
     }
 }

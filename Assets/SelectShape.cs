@@ -25,4 +25,8 @@ public class SelectShape : MonoBehaviour
     public void PrepareSelect() {
         selectPrepared = true;
     }
+
+    public void CancelSelect () {
+        selectPrepared = false;
+    }
 }

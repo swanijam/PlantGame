@@ -109,6 +109,30 @@ public class PGTileStateManager : MonoBehaviour
     public Vector3 GetPosition(int tilex, int tiley, Vector2 anchor) {
         return origin.position + new Vector3(tilex*tileWidth + anchor.x*tileWidth, heightOffset, tiley*tileWidth + anchor.y*tileWidth);
     }
+
+    public bool AllTilesValid(int x, int y, ForecastShape shape, float rotation=0f) {
+        for (int i = 0; i < shape.tiles.Count; i++) {
+            Vector2Int offs = ShapePositioning.RotateOffset(shape.tiles[i].offset, rotation);
+            if (!ValidCoordinate(offs.x + x, offs.y + y)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int DoAHarvest() {
+        int plants = 0;
+        for (int x = 0; x < dimensions.x; x++ ) {
+            for (int y = 0; y < dimensions.y; y++ ) {
+                if (tiles[x][y].currentPlant != null) {
+                    if (tiles[x][y].currentPlant.harvestable) {
+                        plants++;
+                    }
+                }
+            }
+        }
+        return plants;
+    }
 }
 
 [System.Serializable]

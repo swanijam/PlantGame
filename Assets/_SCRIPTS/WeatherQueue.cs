@@ -35,17 +35,25 @@ public class WeatherQueue : MonoBehaviour
         return instance.weatherQueue.ToArray();
     }
 
+    public int numLightnings = 2;
     public bool noNoneDays = true;
     public void Initialize(int numDays=10) {
         weatherQueue = new List<ForecastType>();
         for (int i = 0; i < numDays; i++) {
-            int selection = Random.Range(0, 3);
-            if (noNoneDays) {
-                while(((ForecastType)selection).Equals(ForecastType.None)) {
-                    selection = Random.Range(0, 3);
-                }
+            int selection = Random.Range(0, 4);
+        // we would rather insert lignthing manually
+        while(((ForecastType)selection).Equals(ForecastType.Lightning)) {
+            selection = Random.Range(0, 4);
+        }
+        if (noNoneDays) {
+            while(((ForecastType)selection).Equals(ForecastType.None) || ((ForecastType)selection).Equals(ForecastType.Lightning)) {
+                selection = Random.Range(0, 4);
             }
-            weatherQueue.Add((ForecastType)selection);
+        }
+        weatherQueue.Add((ForecastType)selection);
+        }
+        for (int i = 0; i < numLightnings; i++) {
+            weatherQueue.Insert(Random.Range(0, weatherQueue.Count), ForecastType.Lightning);
         }
         // Debug.Log("Initialized Weather Queue");
     }

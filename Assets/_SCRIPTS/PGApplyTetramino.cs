@@ -17,7 +17,7 @@ public class PGApplyTetramino : MonoBehaviour
         int y = shapePositioning.currentOriginTile.y;
         ForecastType type = WeatherQueue.currentWeather;
         for (int i = 0; i < _shape.tiles.Count; i++) {
-            Vector2Int offs = shapePositioning.RotateOffset(_shape.tiles[i].offset, shapePositioning.rotation);
+            Vector2Int offs = ShapePositioning.RotateOffset(_shape.tiles[i].offset, shapePositioning.rotation);
             // note that this is not using the type on the forecastTile (deprecated), but is instead using the current weather in the weatherqueue. 
             if(_shape.tiles[i].type != ForecastType.None) state.AddWeather(x+offs.x, y+offs.y, type, 1);
             // if(_shape.tiles[i].type == ForecastType.Sun) state.AddSunlight(x+offs.x, y+offs.y, 1);

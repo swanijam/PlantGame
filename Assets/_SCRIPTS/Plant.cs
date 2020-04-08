@@ -7,6 +7,19 @@ public class Plant : MonoBehaviour
     public ForecastType currentlyWanting;
     public Transform plantT;
     int HEALTH = 1;
+    int _growth = 0;
+    public int growth {
+        get {return _growth;}
+        set {
+            _growth=value;
+            if (_growth >= 3) {
+                harvestable = true;
+                harvestableVisual.SetActive(true);
+            }
+        }
+    }
+    public bool harvestable = false;
+    public GameObject harvestableVisual;
     private void OnEnable()
     {
         BeginNewTurn();
@@ -26,10 +39,14 @@ public class Plant : MonoBehaviour
     public void BeginNewTurn() {
         receivedThisTurn = ForecastType.None;
         if (!changeNeedEveryTurn && !needMet && !currentlyWanting.Equals(ForecastType.None)) return;
-        int selection = Random.Range(0, 3);
+        int selection = Random.Range(0, 4);
+        // plants don't want lightning
+        while(((ForecastType)selection).Equals(ForecastType.Lightning)) {
+            selection = Random.Range(0, 4);
+        }
         if (noNoneDays) {
-            while(((ForecastType)selection).Equals(ForecastType.None)) {
-                selection = Random.Range(0, 3);
+            while(((ForecastType)selection).Equals(ForecastType.None) || ((ForecastType)selection).Equals(ForecastType.Lightning)) {
+                selection = Random.Range(0, 4);
             }
         }
         currentlyWanting = (ForecastType)selection;
@@ -38,6 +55,7 @@ public class Plant : MonoBehaviour
 
     ForecastType receivedThisTurn = ForecastType.None;
     public void ResolveTurn() {
+        // this implicitly includes lightning because plants never want lightning
         if (!receivedThisTurn.Equals(currentlyWanting) && !receivedThisTurn.Equals(ForecastType.None)) {
             HEALTH--;
         }
@@ -57,6 +75,7 @@ public class Plant : MonoBehaviour
     }
 
     public void Grow() {
+        growth++;
         needMet = true;
         plantT.localScale = new Vector3(plantT.localScale.x, plantT.localScale.y*1.5f, plantT.localScale.z);
         if (!changeNeedEveryTurn) currentlyWanting = ForecastType.None; 

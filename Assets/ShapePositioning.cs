@@ -130,7 +130,7 @@ public class ShapePositioning : MonoBehaviour
         rotation = newRotation;
         UpdateTileArray();
     }
-    public Vector2Int RotateOffset(Vector2Int offset, float rotation) {
+    public static Vector2Int RotateOffset(Vector2Int offset, float rotation) {
         float normalizedRotation = rotation % 360f;
         if (normalizedRotation < 0f) normalizedRotation += 360f;
         if (normalizedRotation == 0f) return offset;
@@ -175,10 +175,22 @@ public class ShapePositioning : MonoBehaviour
         UpdateTileArray();
     }
     public void EndDragging() {
-        applyForecastShape.ApplyCurrentTetramino(currentShape);
-        if (onPlaceShape != null)  onPlaceShape();
+        if (PGTileStateManager.instance.AllTilesValid(currentOriginTile.x, currentOriginTile.y, currentShape, rotation)) {
+            applyForecastShape.ApplyCurrentTetramino(currentShape);
+            if (onPlaceShape != null)  onPlaceShape();
+            currentShape = null;
+            currentlyDragging = false;
+        } else {
+            ReturnToShapeQueue();
+        }
+    }
+
+    public ShapeQueuePanel shapeQueuePanel;
+    public void ReturnToShapeQueue() {
         currentShape = null;
         currentlyDragging = false;
+        ClearPreviewTiles();
+        shapeQueuePanel.CancelPreparedSelections();
     }
 }
 
@@ -192,6 +204,7 @@ public class ShapePositioningEditor : Editor{
     SerializedProperty tileWidth;
     SerializedProperty currentOriginTile;
     SerializedProperty applyForecastShape;
+    SerializedProperty shapeQueuePanel;
     // // [HideInInspector]
     private void OnEnable()
     {
@@ -202,6 +215,7 @@ public class ShapePositioningEditor : Editor{
         tileWidth = serializedObject.FindProperty("tileWidth");
         currentOriginTile = serializedObject.FindProperty("currentOriginTile");
         applyForecastShape = serializedObject.FindProperty("applyForecastShape");
+        shapeQueuePanel = serializedObject.FindProperty("shapeQueuePanel");
     }
     public override void OnInspectorGUI() {
         serializedObject.Update();
@@ -217,6 +231,7 @@ public class ShapePositioningEditor : Editor{
         EditorGUILayout.PropertyField(previewTileSun);
         EditorGUILayout.PropertyField(tileSpawnHeight);
         EditorGUILayout.PropertyField(tileWidth);
+        EditorGUILayout.PropertyField(shapeQueuePanel);
         serializedObject.ApplyModifiedProperties();
     }
 }

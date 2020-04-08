@@ -50,4 +50,11 @@ public class ShapeQueuePanel : MonoBehaviour
             selector.shapeIndexInQueue = i;
         }
     }
+
+    public void CancelPreparedSelections() {
+        for (int i = 0; i < elements.Count; i++) {
+            SelectShape selector = elements[i].gameObject.GetComponent<SelectShape>();
+            selector.CancelSelect();
+        }
+    }
 }
