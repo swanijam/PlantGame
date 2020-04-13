@@ -27,6 +27,7 @@ public class Plant : MonoBehaviour
 
     public void ReceiveWeather(ForecastType type) {
         receivedThisTurn = type;
+        Debug.Log(currentlyWanting +";"+ receivedThisTurn);
     }
     
     public void AdvanceTurn() {
@@ -35,21 +36,40 @@ public class Plant : MonoBehaviour
     }
     bool noNoneDays = true;
     bool changeNeedEveryTurn = false;
-    bool needMet = true;
+    bool initialized = false;
+    bool needMet = false;
+    bool alwaysAlternateAfterNeedMet = true;
     public void BeginNewTurn() {
+        Debug.Log("start new turn: " + currentlyWanting);
         receivedThisTurn = ForecastType.None;
-        if (!changeNeedEveryTurn && !needMet && !currentlyWanting.Equals(ForecastType.None)) return;
-        int selection = Random.Range(0, 4);
-        // plants don't want lightning
-        while(((ForecastType)selection).Equals(ForecastType.Lightning)) {
-            selection = Random.Range(0, 4);
+        
+        if (initialized && !changeNeedEveryTurn && !needMet && !currentlyWanting.Equals(ForecastType.None)) {
+            Debug.Log("cancelling because need wasn't met");
+            return;
         }
-        if (noNoneDays) {
-            while(((ForecastType)selection).Equals(ForecastType.None) || ((ForecastType)selection).Equals(ForecastType.Lightning)) {
+            // override the randomness if we choose to alternate instead
+        if (initialized && alwaysAlternateAfterNeedMet && needMet) {
+            Debug.Log("Alternating " + currentlyWanting);
+            if (currentlyWanting.Equals(ForecastType.Water)) currentlyWanting = ForecastType.Sun;
+            else if (currentlyWanting.Equals(ForecastType.Sun)) currentlyWanting = ForecastType.Water;
+            Debug.Log("Done Alternating " + currentlyWanting);
+        } else {
+            Debug.Log("randomizing new want");
+            int selection = Random.Range(0, 4);
+            // plants don't want lightning
+            while(((ForecastType)selection).Equals(ForecastType.Lightning)) {
                 selection = Random.Range(0, 4);
             }
+            if (noNoneDays) {
+                while(((ForecastType)selection).Equals(ForecastType.None) || ((ForecastType)selection).Equals(ForecastType.Lightning)) {
+                    selection = Random.Range(0, 4);
+                }
+            }
+            currentlyWanting = (ForecastType)selection;
+            Debug.Log("random new want: " + currentlyWanting);
         }
-        currentlyWanting = (ForecastType)selection;
+        // Debug.Log(currentlyWanting);
+        initialized = true;
         AnnounceWant();
     }
 
@@ -77,8 +97,9 @@ public class Plant : MonoBehaviour
     public void Grow() {
         growth++;
         needMet = true;
+        if (growth > 3) return;
         plantT.localScale = new Vector3(plantT.localScale.x, plantT.localScale.y*1.5f, plantT.localScale.z);
-        if (!changeNeedEveryTurn) currentlyWanting = ForecastType.None; 
+        // if (!changeNeedEveryTurn) currentlyWanting = ForecastType.None; 
     }
 
     public GameObject wantUIwtr, wantUIsun;

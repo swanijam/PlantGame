@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_SCENES/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
-    path: Assets/PlantGamePrototype.unity
+    path: Assets/_SCENES/PlantGamePrototype.unity
     guid: 0f8e167e2b350554d8af20680fb16944
   m_configObjects: {}
