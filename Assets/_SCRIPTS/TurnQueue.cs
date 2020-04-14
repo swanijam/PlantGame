@@ -24,8 +24,17 @@ public class TurnQueue : MonoBehaviour
         }
     }
 
-    public int numPlantsAtStart = 5;
-    public void Initialize() {
+    // public int numPlantsAtStart = 5;
+    public void Initialize(int numPlantsAtStart=5) {
+        if (turnQueue.Count > 0) {
+            // remove stuff from previous round
+            for (int i = 0; i < turnQueue.Count; i++) {
+                TurnAction ta = turnQueue[i];
+                turnQueue[i] = null;
+                GameObject.Destroy(ta.gameObject);
+            }
+            turnQueue.Clear();
+        }
         GameObject go;
         for ( int n = 0; n < numPlantsAtStart; n++) {
             go = Instantiate(plantTurnPrefab, TurnActionsGroup);
@@ -49,7 +58,9 @@ public class TurnQueue : MonoBehaviour
                 yield return null;
             }
             turnQueue[i].gameObject.SetActive(false);
+            yield return null;
         }
-        PlantGameManager.instance.CompleteGame();
+        yield return new WaitForSeconds(2.1f);
+        PlantGameManager.instance.CompleteRound();
     }
 }

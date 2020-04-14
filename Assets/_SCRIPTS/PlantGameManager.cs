@@ -22,14 +22,32 @@ public class PlantGameManager : MonoBehaviour
     public ShapePositioning shapePositioning;
     public TurnQueue turnQueue;
 
+    public int numDaysPerRound = 7;
+    public int numLightningsPerRound = 2;
+    public int numPlantsAtStart = 8;
     private void Start()
     {
-        weatherQueue.Initialize();
+        weatherQueue.Initialize(numDaysPerRound, numLightningsPerRound);
         weatherQueuePanel.Initialize();
+
         tileStateManager.Initialize();
-        shapeQueue.Initialize(WeatherQueue.numDays);
+        
+        // shapeQueue.Initialize(WeatherQueue.numDays); // weatherqueue num days is numDaysPerRound
+        shapeQueue.Initialize(numDaysPerRound);
         shapeQueuePanel.Initialize();
-        turnQueue.Initialize();
+        
+        turnQueue.Initialize(numPlantsAtStart);
+    }
+
+    public void BeginNewRound() {
+        weatherQueue.Initialize(numDaysPerRound, numLightningsPerRound);
+        weatherQueuePanel.Initialize();
+
+        // shapeQueue.Initialize(WeatherQueue.numDays); // weatherqueue num days is numDaysPerRound
+        shapeQueue.Initialize(numDaysPerRound);
+        shapeQueuePanel.Initialize();
+        
+        turnQueue.Initialize(numPlantsAtStart);
     }
 
     public void ClearForecastShapeSelection() {
@@ -46,8 +64,10 @@ public class PlantGameManager : MonoBehaviour
     }
 
     public UnityEngine.UI.Text endText;
-    public void CompleteGame() {
-        endText.gameObject.SetActive(true);
-        endText.text = "U GOT " + tileStateManager.DoAHarvest() + " PLANTS TO HARVEST";
+    public void CompleteRound() {
+        // endText.gameObject.SetActive(true);
+        // endText.text = "U GOT " + tileStateManager.DoAHarvest() + " PLANTS TO HARVEST";
+        int harvested = tileStateManager.DoAHarvest(true);
+        BeginNewRound();
     }
 }

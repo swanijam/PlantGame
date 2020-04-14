@@ -6,6 +6,8 @@ public class Plant : MonoBehaviour
 {
     public ForecastType currentlyWanting;
     public Transform plantT;
+    [HideInInspector]
+    public Vector2Int tileCoordinate;
     int HEALTH = 1;
     int _growth = 0;
     public int growth {
@@ -91,6 +93,7 @@ public class Plant : MonoBehaviour
 
     public void Die() {
         gameObject.SetActive(false);
+        PGTileStateManager.instance.tiles[tileCoordinate.x][tileCoordinate.y].currentPlant = null;
         // GameObject.DestroyImmediate(this.gameObject);
     }
 

@@ -67,6 +67,7 @@ public class PGTileStateManager : MonoBehaviour
                 tiles[x].Add(new PGTile());
                 GameObject go = new GameObject(x + "," + y);
                 go.transform.SetParent(transform);
+                tiles[x][y].tileCoordinate = new Vector2Int(x,y);
                 tiles[x][y].soilRenderer = Instantiate(SoilRenderPrefab, GetPosition(x,y,new Vector2(.5f, .5f)), Quaternion.identity, go.transform);
                 tiles[x][y].currentPlant = null;
             }
@@ -120,13 +121,18 @@ public class PGTileStateManager : MonoBehaviour
         return true;
     }
 
-    public int DoAHarvest() {
+    public int DoAHarvest(bool clearHarvestable=false) {
         int plants = 0;
         for (int x = 0; x < dimensions.x; x++ ) {
             for (int y = 0; y < dimensions.y; y++ ) {
                 if (tiles[x][y].currentPlant != null) {
                     if (tiles[x][y].currentPlant.harvestable) {
                         plants++;
+                        if(clearHarvestable) {
+                            Plant p = tiles[x][y].currentPlant;
+                            tiles[x][y].currentPlant = null;
+                            GameObject.Destroy(p.gameObject); // later, p.do a harvest animation and then destroy self
+                        }
                     }
                 }
             }
@@ -138,15 +144,13 @@ public class PGTileStateManager : MonoBehaviour
 [System.Serializable]
 public class PGTile {
     public GameObject soilRenderer;
-    public Plant currentPlant;
-    // emit state change events using event "onStateChanged"
-    // by using a subscriber pattern here, we can have the TileStateManager continue to not care what's rendering it.
-    // a PlantRenderer, for example, should initialize by doing [TileStateManager].tiles[x,y].onStateChanged += PlantStateChange;
-    public delegate void StateChangeEvent(int newSun, int newWater);
-    public event StateChangeEvent onStateChanged;
-    private void EmitStateChangeEvent(int newSun, int newWater) {
-        if (onStateChanged != null) onStateChanged(newSun, newWater);
+    public Vector2Int tileCoordinate;
+    public Plant _currentPlant;
+    public Plant currentPlant {
+        get {return _currentPlant;}
+        set {
+            _currentPlant = value;
+            if (_currentPlant!=null)_currentPlant.tileCoordinate = tileCoordinate;
+        }
     }
-
-
 }
